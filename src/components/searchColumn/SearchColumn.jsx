@@ -12,7 +12,7 @@ const fuse = new Fuse(pokemonArray, {
 import SearchInput from './searchInput';
 import SearchResults from './SearchResults';
 
-function SearchColumn() {
+function SearchColumn({ setResponse }) {
   const [searchResults, setSearchResults] = useState([]);
   function handleFuseSearch(searchVal) {
     const results = fuse.search(searchVal);
@@ -24,7 +24,7 @@ function SearchColumn() {
     <div className="search-column">
       <h1>Stat checker</h1>
       <SearchInput handleSearch={handleFuseSearch} />
-      <SearchResults searchResults={searchResults} />
+      <SearchResults searchResults={searchResults} setResponse={setResponse} />
     </div>
   );
 }

@@ -1,13 +1,13 @@
 import { handleApiCall } from './../../utils/functions';
 
-function SearchResults({ searchResults }) {
+function SearchResults({ searchResults, setResponse }) {
   return (
     <div className="search-results">
       {searchResults.length > 0 ? (
         searchResults.map((searchResult) => (
           <button
             key={searchResult.item.id}
-            onClick={() => handleApiCall(searchResult.item.id)}
+            onClick={() => handleApiCall(searchResult.item.id, setResponse)}
           >
             {searchResult.item.name}
           </button>

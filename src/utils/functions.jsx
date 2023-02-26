@@ -1,5 +1,4 @@
-const handleApiCall = (pokeId) => {
-  let pokeData = {};
+const handleApiCall = (pokeId, setPokeData) => {
   fetch(`https://pokeapi.co/api/v2/pokemon/${pokeId}`)
     .then((response) => {
       if (!response.ok) console.error(response.error);
@@ -7,10 +6,8 @@ const handleApiCall = (pokeId) => {
     })
     .then((result) => {
       console.log('result', result);
-      pokeData = result;
+      setPokeData(result);
     });
-
-  return pokeData;
 };
 
 export { handleApiCall };
