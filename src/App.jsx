@@ -1,11 +1,11 @@
 import './App.css';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { pokemonArray } from './data';
 import Fuse from 'fuse.js';
 const fuse = new Fuse(pokemonArray, {
   keys: ['name'],
-  distance: 1,
   minMatchCharLength: 2,
+  threshold: 0.4,
 });
 
 function App() {
