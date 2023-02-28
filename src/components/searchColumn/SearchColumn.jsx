@@ -17,7 +17,6 @@ function SearchColumn({ setResponse }) {
   function handleFuseSearch(searchVal) {
     const results = fuse.search(searchVal);
     setSearchResults(results);
-    console.log(results);
   }
 
   return (

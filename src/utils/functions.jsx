@@ -5,7 +5,6 @@ const handleApiCall = (pokeId, setPokeData) => {
       return response.json();
     })
     .then((result) => {
-      console.log('result', result);
       setPokeData(result);
     });
 };

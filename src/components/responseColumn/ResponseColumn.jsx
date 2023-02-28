@@ -1,8 +1,10 @@
+import PokeInfo from './PokeInfo';
+
 function ResponseColumn({ response }) {
   return (
-    <div className="card">
+    <div className="response-column">
       {response ? (
-        <pre>{JSON.stringify(response, null, 2)}</pre>
+        <PokeInfo response={response} />
       ) : (
         <p className="gray">No response yet.</p>
       )}
