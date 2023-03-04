@@ -1,39 +1,29 @@
 import { useState, useEffect } from 'react';
-import { calculateStatFormula } from '../../utils/functions';
+import { getStatAndEvData } from '../../utils/functions';
+import StatRow from './StatRow';
 
 function PokeInfo({ response }) {
-  const [effortValuesData, setEffortValuesData] = useState([]);
-  const [statsTable, setStatsTable] = useState(null);
+  const [effortValues, setEffortValues] = useState([]);
+  const [stats, setStats] = useState(null);
   const [level, setLevel] = useState(localStorage.getItem('level') || 5);
+
   useEffect(() => {
-    const effortValues = [];
-    const tableContent = response.stats.map(
-      ({ base_stat, effort, stat: { name } }, i) => {
-        if (effort > 0) effortValues.push({ name, effort });
-        console.log(level);
-        const perfectStat = calculateStatFormula(name, base_stat, level);
-        return (
-          <tr key={i}>
-            <td>{name}</td>
-            <td>{perfectStat}</td>
-          </tr>
-        );
-      }
-    );
-    setEffortValuesData(effortValues);
-    setStatsTable(
-      <table>
-        <tbody>{tableContent}</tbody>
-      </table>
-    );
-  }, [response, level]);
+    const { effortValuesData, statsData } = getStatAndEvData(response);
+    console.log({ effortValuesData, statsData });
+    setEffortValues(effortValuesData);
+    setStats(statsData);
+  }, [response]);
 
   return (
     <div className="poke-info">
       <h2>{response.name}</h2>
       <img src={response.sprites.front_default} alt={response.name} />
       <p>id: {response.id}</p>
-      {statsTable}
+      <h3>Stats:</h3>
+      {stats?.length &&
+        stats.map((el) => (
+          <StatRow key={el.base_stat + el.name} data={el} level={level} />
+        ))}
       <input
         type="number"
         value={level}
@@ -43,15 +33,12 @@ function PokeInfo({ response }) {
         }}
       />
       <h3>IVs:</h3>
-      {effortValuesData.length ? (
-        effortValuesData.map((el) => (
+      {effortValues.length &&
+        effortValues.map((el) => (
           <p key={el.name}>
             {el.name}: {el.effort}
           </p>
-        ))
-      ) : (
-        <></>
-      )}
+        ))}
     </div>
   );
 }

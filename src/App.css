@@ -67,17 +67,8 @@ input:active {
 .search-column {
 }
 
-table {
-  width: 70%;
-  border-collapse: collapse;
-}
-table tr {
-  border: 1px solid #fff;
-}
-table tr td:first-of-type {
-  border-right: 1px solid #fff;
-}
-
-table tr td {
-  padding: 0.3rem 0.5rem;
+div.stat-row {
+  border-bottom: 1px solid #fff;
+  display: flex;
+  justify-content: space-between;
 }

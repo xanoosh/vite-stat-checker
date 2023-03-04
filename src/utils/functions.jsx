@@ -29,4 +29,14 @@ const calculateStatFormula = (
   return isHp ? semiResult + Number(level) + 10 : (semiResult + 5) * nature;
 };
 
-export { handleApiCall, calculateStatFormula };
+const getStatAndEvData = (response) => {
+  const effortValuesData = [];
+  const statsData = [];
+  response.stats.forEach(({ base_stat, effort, stat: { name } }) => {
+    if (effort > 0) effortValuesData.push({ name, effort });
+    statsData.push({ name, base_stat });
+  });
+  return { effortValuesData, statsData };
+};
+
+export { handleApiCall, calculateStatFormula, getStatAndEvData };
