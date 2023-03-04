@@ -1,19 +1,21 @@
 import { useState, useEffect } from 'react';
+import { calculateStatFormula } from '../../utils/functions';
 
 function PokeInfo({ response }) {
   const [effortValuesData, setEffortValuesData] = useState([]);
   const [statsTable, setStatsTable] = useState(null);
-  // const
-
+  const [level, setLevel] = useState(localStorage.getItem('level') || 5);
   useEffect(() => {
     const effortValues = [];
     const tableContent = response.stats.map(
       ({ base_stat, effort, stat: { name } }, i) => {
         if (effort > 0) effortValues.push({ name, effort });
+        console.log(level);
+        const perfectStat = calculateStatFormula(name, base_stat, level);
         return (
           <tr key={i}>
             <td>{name}</td>
-            <td>{base_stat}</td>
+            <td>{perfectStat}</td>
           </tr>
         );
       }
@@ -24,7 +26,7 @@ function PokeInfo({ response }) {
         <tbody>{tableContent}</tbody>
       </table>
     );
-  }, [response]);
+  }, [response, level]);
 
   return (
     <div className="poke-info">
@@ -32,6 +34,14 @@ function PokeInfo({ response }) {
       <img src={response.sprites.front_default} alt={response.name} />
       <p>id: {response.id}</p>
       {statsTable}
+      <input
+        type="number"
+        value={level}
+        onChange={(e) => {
+          setLevel(e.target.value);
+          localStorage.setItem('level', e.target.value);
+        }}
+      />
       <h3>IVs:</h3>
       {effortValuesData.length ? (
         effortValuesData.map((el) => (
