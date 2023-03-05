@@ -5,15 +5,16 @@ function SearchResults({ searchResults, setResponse }) {
     <div className="search-results">
       {searchResults.length > 0 ? (
         searchResults.map((searchResult) => (
-          <button
-            key={searchResult.item.id}
-            onClick={() => handleApiCall(searchResult.item.id, setResponse)}
-          >
-            {searchResult.item.name}
-          </button>
+          <div key={searchResult.item.id} className="search-results-column">
+            <button
+              onClick={() => handleApiCall(searchResult.item.id, setResponse)}
+            >
+              {searchResult.item.name}
+            </button>
+          </div>
         ))
       ) : (
-        <p className="gray">No results.</p>
+        <p className="muted">No results.</p>
       )}
     </div>
   );

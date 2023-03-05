@@ -31,8 +31,10 @@ function StatRow({ data, level, iv = 31, ev = 0 }) {
 
   return (
     <div className="stat-row">
-      <span>{data.name}</span>
-      <span>{statValue}</span>
+      <div className="span-container">
+        <span>{data.name}</span>
+        <span>{statValue}</span>
+      </div>
       <StatRowPopover
         name={data.name}
         iv={ivState}

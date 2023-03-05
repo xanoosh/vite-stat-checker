@@ -1,8 +1,11 @@
 function SearchInput({ handleSearch }) {
   return (
-    <div className="card">
-      <input type="text" onChange={(e) => handleSearch(e.target.value)} />
-    </div>
+    <input
+      className="search-input"
+      placeholder="type name here"
+      type="text"
+      onChange={(e) => handleSearch(e.target.value)}
+    />
   );
 }
 

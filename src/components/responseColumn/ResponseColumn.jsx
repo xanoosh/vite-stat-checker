@@ -6,7 +6,7 @@ function ResponseColumn({ response }) {
       {response ? (
         <PokeInfo response={response} />
       ) : (
-        <p className="gray">No response yet.</p>
+        <p className="muted">No response yet.</p>
       )}
     </div>
   );

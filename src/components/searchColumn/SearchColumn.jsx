@@ -15,7 +15,7 @@ import SearchResults from './SearchResults';
 function SearchColumn({ setResponse }) {
   const [searchResults, setSearchResults] = useState([]);
   function handleFuseSearch(searchVal) {
-    const results = fuse.search(searchVal);
+    const results = fuse.search(searchVal, { limit: 12 });
     setSearchResults(results);
   }
 
