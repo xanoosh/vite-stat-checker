@@ -1,3 +1,5 @@
+import { naturesMap } from '../data';
+
 const handleApiCall = (pokeId, setPokeData) => {
   if (localStorage.getItem(pokeId)) {
     setPokeData(JSON.parse(localStorage.getItem(pokeId)));
@@ -14,19 +16,33 @@ const handleApiCall = (pokeId, setPokeData) => {
   }
 };
 
+const getNatureModifier = (statName, nature) => {
+  if (statName === 'hp') return 1;
+  if (nature === 'Neutral') return 1;
+
+  const [increased, decreased] = naturesMap.get(nature);
+  if (increased.name === statName) return increased.value;
+  if (decreased.name === statName) return decreased.value;
+  return 1;
+};
+
 const calculateStatFormula = (
   statName,
   base,
   level,
   iv = 31,
   ev = 0,
-  nature = 1
+  nature
 ) => {
+  const natureModifier = getNatureModifier(statName, nature);
   const isHp = statName === 'hp';
+  nature;
   const semiResult = Math.floor(
     ((2 * base + iv + Math.floor(ev / 4)) * level) / 100
   );
-  return isHp ? semiResult + Number(level) + 10 : (semiResult + 5) * nature;
+  return isHp
+    ? semiResult + Number(level) + 10
+    : Math.floor((semiResult + 5) * natureModifier);
 };
 
 const getStatAndEvData = (response) => {

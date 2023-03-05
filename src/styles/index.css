@@ -3,10 +3,24 @@
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   color-scheme: light dark;
-  --app-bg-color: #242424;
-  --app-primary-color: #646cff;
-  --app-text-color: #fff;
-  --app-text-color-muted: #6b6b6b;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --app-bg-color: #242424;
+    --app-primary-color: #646cff;
+    --app-text-color: #fff;
+    --app-text-color-muted: #6b6b6b;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --app-bg-color: #fff;
+    --app-primary-color: #646cff;
+    --app-text-color: #242424;
+    --app-text-color-muted: #6b6b6b;
+  }
 }
 
 /* reset */

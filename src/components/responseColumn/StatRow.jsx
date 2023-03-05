@@ -2,25 +2,25 @@ import { useEffect, useState } from 'react';
 import { calculateStatFormula } from '../../utils/functions';
 import StatRowPopover from './StatRowPopover';
 
-function StatRow({ data, level, iv = 31, ev = 0 }) {
+function StatRow({ data, level, nature, iv = 31, ev = 0 }) {
   const [statValue, setStatValue] = useState(
-    calculateStatFormula(data.name, data.base_stat, level, iv, ev)
+    calculateStatFormula(data.name, data.base_stat, level, iv, ev, nature)
   );
 
   const [ivState, setIvState] = useState(iv);
   const [evState, setEvState] = useState(ev);
 
   useEffect(() => {
-    console.log('change');
     const newStatValue = calculateStatFormula(
       data.name,
       data.base_stat,
       level,
       ivState,
-      evState
+      evState,
+      nature
     );
     setStatValue(newStatValue);
-  }, [evState, ivState]);
+  }, [evState, ivState, level, nature]);
 
   const handleChangeIv = (e) => {
     setIvState(Number(e.target.value));
