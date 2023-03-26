@@ -9,7 +9,7 @@ const fuse = new Fuse(pokemonArray, {
   threshold: 0.4,
 });
 //components
-import SearchInput from './searchInput';
+import SearchInput from './SearchInput';
 import SearchResults from './SearchResults';
 
 function SearchColumn({ setResponse }) {
