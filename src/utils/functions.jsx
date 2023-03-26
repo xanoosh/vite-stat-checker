@@ -3,6 +3,7 @@ import { naturesMap } from '../data';
 const handleApiCall = (pokeId, setPokeData) => {
   if (localStorage.getItem(pokeId)) {
     setPokeData(JSON.parse(localStorage.getItem(pokeId)));
+    scrollIntoResult();
   } else {
     fetch(`https://pokeapi.co/api/v2/pokemon/${pokeId}`)
       .then((response) => {
@@ -11,6 +12,7 @@ const handleApiCall = (pokeId, setPokeData) => {
       })
       .then((result) => {
         setPokeData(result);
+        scrollIntoResult();
         localStorage.setItem(pokeId, JSON.stringify(result));
       });
   }
@@ -55,4 +57,17 @@ const getStatAndEvData = (response) => {
   return { effortValuesData, statsData };
 };
 
-export { handleApiCall, calculateStatFormula, getStatAndEvData };
+const scrollIntoResult = () => {
+  // mobile only
+  const element = document.querySelector('.response-column');
+  if (window.innerWidth <= 992 && element) {
+    element.scrollIntoView({ behavior: 'smooth' });
+  }
+};
+
+export {
+  handleApiCall,
+  calculateStatFormula,
+  getStatAndEvData,
+  scrollIntoResult,
+};
