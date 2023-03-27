@@ -3231,7 +3231,7 @@ const pokemonArray = [
 
 const naturesMap = new Map([
   [
-    'lonely',
+    'Lonely',
     [
       { name: 'attack', value: 1.1 },
       { name: 'defense', value: 0.9 },
