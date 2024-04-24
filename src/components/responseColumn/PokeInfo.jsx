@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { getStatAndEvData } from '../../utils/functions';
 import StatRow from './StatRow';
 import { naturesList } from '../../data';
+import SelectComponent from './SelectComponent';
 
 function PokeInfo({ response }) {
   const [effortValues, setEffortValues] = useState([]);
@@ -40,18 +41,11 @@ function PokeInfo({ response }) {
         }}
       />
       <p>nature</p>
-      <select
-        name="nature"
-        id="a"
+      <SelectComponent
+        items={naturesList}
         value={nature}
-        onChange={(e) => setNature(e.target.value)}
-      >
-        {naturesList.map((el) => (
-          <option key={el} value={el}>
-            {el}
-          </option>
-        ))}
-      </select>
+        onValueChange={setNature}
+      />
       <p>IVs:</p>
       {effortValues.length &&
         effortValues.map((el) => (
