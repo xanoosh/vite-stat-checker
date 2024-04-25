@@ -18,7 +18,7 @@ const handleApiCall = (pokeId, setPokeData) => {
   }
 };
 
-const getNatureModifier = (statName, nature) => {
+export const getNatureModifier = (statName, nature) => {
   if (statName === 'hp') return 1;
   if (nature === 'Neutral') return 1;
 

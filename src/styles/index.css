@@ -127,3 +127,19 @@ input:active {
   display: flex;
   justify-content: space-between;
 }
+
+.response-column .stat-row .span-container span:last-of-type {
+  font-weight: 700;
+}
+
+.response-column .stat-row .span-container .increased {
+  color: rgb(110 231 183);
+}
+
+.response-column .stat-row .span-container .decreased {
+  color: rgb(252 165 165);
+}
+
+.response-column .stat-row .span-container .neutral {
+  color: white;
+}
