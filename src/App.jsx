@@ -1,4 +1,4 @@
-import './styles/index.css';
+import './styles/index.scss';
 import SearchColumn from './components/searchColumn/SearchColumn';
 import ResponseColumn from './components/responseColumn/ResponseColumn';
 import { useState } from 'react';

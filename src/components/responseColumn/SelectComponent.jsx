@@ -1,5 +1,4 @@
 import * as Select from '@radix-ui/react-select';
-import '../../styles/select.css';
 import { ChevronDownIcon } from '@radix-ui/react-icons';
 
 export default function SelectComponent({ items, value, onValueChange }) {

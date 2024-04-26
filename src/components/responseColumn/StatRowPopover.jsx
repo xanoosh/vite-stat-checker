@@ -1,6 +1,5 @@
 import * as Popover from '@radix-ui/react-popover';
 import { MixerHorizontalIcon, Cross2Icon } from '@radix-ui/react-icons';
-import '../../styles/popover.css';
 
 function StatRowPopover({ name, iv, handleChangeIv, ev, handleChangeEv }) {
   return (

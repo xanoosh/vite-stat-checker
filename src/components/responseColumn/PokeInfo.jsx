@@ -33,6 +33,7 @@ function PokeInfo({ response }) {
         ))}
       <p>level:</p>
       <input
+        className="number-input"
         type="number"
         value={level}
         onChange={(e) => {
