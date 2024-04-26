@@ -1,75 +1,45 @@
-/* reset */
-button {
-  all: unset;
+%input-style {
+  border-radius: 0.2rem;
+  padding: 0.4rem 1.2rem;
+  width: 7rem;
+  font-size: 0.9rem;
+  color: $text-color;
+  cursor: pointer;
+  line-height: 1;
 }
 
 .SelectTrigger {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  border-radius: 4px;
-  padding: 0 15px;
-  font-size: 13px;
-  line-height: 1;
-  height: 35px;
-  gap: 5px;
-  background-color: #242424;
-  color: white;
-  box-shadow: 0 2px 10px var(--black-a7);
-}
-.SelectTrigger:hover {
-  background-color: #242424;
-}
-.SelectTrigger:focus {
-  border: 1px solid #646cff;
-}
-.SelectTrigger[data-placeholder] {
-  color: var(--violet-9);
-}
-
-.SelectIcon {
-  color: Var(--violet-11);
+  justify-content: space-between;
+  background-color: $bg-color-light;
+  @extend %input-style;
+  &:focus {
+    box-shadow: 0 0 0 2px $primary-color;
+  }
 }
 
 .SelectContent {
-  overflow: hidden;
-  background-color: #242424;
+  background-color: $bg-color-light;
   border-radius: 3px;
-}
-
-.SelectViewport {
-  padding: 5px;
+  max-height: 16rem;
+  overflow-y: scroll;
 }
 
 .SelectItem {
-  font-size: 13px;
-  line-height: 1;
-  border-radius: 3px;
   display: flex;
   align-items: center;
-  height: 25px;
-  padding: 0 35px 0 25px;
   position: relative;
   user-select: none;
-  cursor: pointer;
-  color: white;
-  background-color: #242424;
+  @extend %input-style;
 }
 
 .SelectItem[data-disabled] {
-  color: var(--mauve-8);
+  color: $bg-color;
   pointer-events: none;
+  cursor: not-allowed;
 }
 .SelectItem[data-highlighted] {
   outline: none;
-  background-color: #646cff;
-
-  color: var(--violet-1);
-}
-
-.SelectLabel {
-  padding: 0 25px;
-  font-size: 12px;
-  line-height: 25px;
-  color: rebeccapurple;
+  background-color: $primary-color;
 }
