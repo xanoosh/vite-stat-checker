@@ -23,13 +23,6 @@ function StatRow({ data, level, nature, iv = 31, ev = 0 }) {
     setStatValue(newStatValue);
   }, [evState, ivState, level, nature]);
 
-  const handleChangeIv = (e) => {
-    setIvState(Number(e.target.value));
-  };
-  const handleChangeEv = (e) => {
-    setEvState(Number(e.target.value));
-  };
-
   const statClassName = (() => {
     const modifier = getNatureModifier(data.name, nature);
     if (modifier > 1) return 'increased';
@@ -46,9 +39,9 @@ function StatRow({ data, level, nature, iv = 31, ev = 0 }) {
       <StatRowPopover
         name={data.name}
         iv={ivState}
-        handleChangeIv={handleChangeIv}
+        setIv={setIvState}
         ev={evState}
-        handleChangeEv={handleChangeEv}
+        setEv={setEvState}
       />
     </div>
   );

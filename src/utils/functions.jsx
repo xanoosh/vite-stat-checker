@@ -32,10 +32,12 @@ const calculateStatFormula = (
   statName,
   base,
   level,
-  iv = 31,
-  ev = 0,
+  ivVal = 31,
+  evVal = 0,
   nature
 ) => {
+  const iv = Number(ivVal);
+  const ev = Number(evVal);
   const natureModifier = getNatureModifier(statName, nature);
   const isHp = statName === 'hp';
   nature;

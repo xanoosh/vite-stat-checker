@@ -1,7 +1,8 @@
 import * as Popover from '@radix-ui/react-popover';
 import { MixerHorizontalIcon, Cross2Icon } from '@radix-ui/react-icons';
+import NumberInput from '../NumberInput/NumberInput';
 
-function StatRowPopover({ name, iv, handleChangeIv, ev, handleChangeEv }) {
+function StatRowPopover({ name, iv, setIv, ev, setEv }) {
   return (
     <Popover.Root>
       <Popover.Trigger asChild>
@@ -19,7 +20,8 @@ function StatRowPopover({ name, iv, handleChangeIv, ev, handleChangeEv }) {
               <label className="Label" htmlFor="individual-values">
                 Individual Values
               </label>
-              <input
+              <NumberInput value={iv} setValue={setIv} min={0} max={31} />
+              {/* <input
                 type="number"
                 min={0}
                 max={31}
@@ -27,13 +29,14 @@ function StatRowPopover({ name, iv, handleChangeIv, ev, handleChangeEv }) {
                 id="individual-values"
                 defaultValue={iv}
                 onChange={handleChangeIv}
-              />
+              /> */}
             </fieldset>
             <fieldset className="Fieldset">
               <label className="Label" htmlFor="effort-values">
                 Effort Values
               </label>
-              <input
+              <NumberInput value={ev} setValue={setEv} min={0} max={252} />
+              {/* <input
                 type="number"
                 min={0}
                 max={252}
@@ -41,7 +44,7 @@ function StatRowPopover({ name, iv, handleChangeIv, ev, handleChangeEv }) {
                 id="maxWidth"
                 defaultValue={ev}
                 onChange={handleChangeEv}
-              />
+              /> */}
             </fieldset>
           </div>
           <Popover.Close className="PopoverClose" aria-label="Close">

@@ -3,6 +3,7 @@ import { getStatAndEvData } from '../../utils/functions';
 import StatRow from './StatRow';
 import { naturesList } from '../../data';
 import SelectComponent from './SelectComponent';
+import NumberInput from '../NumberInput/NumberInput';
 
 function PokeInfo({ response }) {
   const [effortValues, setEffortValues] = useState([]);
@@ -32,15 +33,7 @@ function PokeInfo({ response }) {
           />
         ))}
       <p>level:</p>
-      <input
-        className="number-input"
-        type="number"
-        value={level}
-        onChange={(e) => {
-          setLevel(e.target.value);
-          localStorage.setItem('level', e.target.value);
-        }}
-      />
+      <NumberInput value={Number(level)} setValue={setLevel} />
       <p>nature</p>
       <SelectComponent
         items={naturesList}

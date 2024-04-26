@@ -1,0 +1,58 @@
+%button-style {
+  padding: 0.2rem;
+  width: 2.2rem;
+  height: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &:hover {
+    background-color: $primary-color;
+  }
+}
+%number-reset {
+  appearance: textfield;
+  -moz-appearance: textfield;
+  &::-webkit-outer-spin-button,
+  &:-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}
+
+.number-input-container {
+  border-radius: 0.2rem;
+  display: flex;
+  align-items: center;
+  width: 7rem;
+  height: 2rem;
+  background-color: $bg-color-light;
+  &:focus-within {
+    box-shadow: 0 0 0 2px $primary-color;
+    // border: 1px solid red;
+  }
+  button {
+    .button-icon {
+      width: 1rem;
+    }
+    &.decrement-button {
+      @extend %button-style;
+      border-top-left-radius: 0.2rem;
+      border-bottom-left-radius: 0.2rem;
+    }
+    &.increment-button {
+      @extend %button-style;
+      border-top-right-radius: 0.2rem;
+      border-bottom-right-radius: 0.2rem;
+    }
+  }
+  input[type='number'] {
+    &:focus {
+      outline: none;
+      box-shadow: none;
+    }
+    @extend %number-reset;
+    height: 2rem;
+    width: 3.6rem;
+    text-align: center;
+  }
+}
