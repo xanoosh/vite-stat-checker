@@ -4,7 +4,7 @@ export default function SearchInput({ handleSearch }) {
       className="search-input"
       placeholder="type name here"
       type="text"
-      onChange={(e) => handleSearch(e.target.value)}
+      onChange={(e) => (handleSearch ? handleSearch(e.target.value) : null)}
     />
   );
 }
