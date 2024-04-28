@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { calculateStatFormula } from '../../utils/functions';
-import StatRowPopover from './StatRowPopover';
+import StatRowPopover from '../PopoverComponent/PopoverComponent';
 import { getNatureModifier } from '../../utils/functions';
 
 function StatRow({ data, level, nature, iv = 31, ev = 0 }) {

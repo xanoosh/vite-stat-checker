@@ -1,6 +1,6 @@
 import { useState } from 'react';
 //search data
-import { pokemonArray } from './../../data';
+import { pokemonArray } from '../../../data';
 //search plugin
 import Fuse from 'fuse.js';
 const fuse = new Fuse(pokemonArray, {
@@ -9,8 +9,8 @@ const fuse = new Fuse(pokemonArray, {
   threshold: 0.4,
 });
 //components
-import SearchInput from './SearchInput';
-import SearchResults from './SearchResults';
+import SearchInput from '../../SearchInput/SearchInput';
+import SearchResults from '../../SearchResults/SearchResults';
 
 function SearchColumn({ setResponse }) {
   const [searchResults, setSearchResults] = useState([]);

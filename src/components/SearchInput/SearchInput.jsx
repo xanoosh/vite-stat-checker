@@ -1,4 +1,4 @@
-function SearchInput({ handleSearch }) {
+export default function SearchInput({ handleSearch }) {
   return (
     <input
       className="search-input"
@@ -8,5 +8,3 @@ function SearchInput({ handleSearch }) {
     />
   );
 }
-
-export default SearchInput;

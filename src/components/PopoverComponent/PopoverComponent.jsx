@@ -2,7 +2,7 @@ import * as Popover from '@radix-ui/react-popover';
 import { MixerHorizontalIcon, Cross2Icon } from '@radix-ui/react-icons';
 import NumberInput from '../NumberInput/NumberInput';
 
-function StatRowPopover({ name, iv, setIv, ev, setEv }) {
+export default function PopoverComponent({ name, iv, setIv, ev, setEv }) {
   return (
     <Popover.Root>
       <Popover.Trigger asChild>
@@ -11,7 +11,11 @@ function StatRowPopover({ name, iv, setIv, ev, setEv }) {
         </button>
       </Popover.Trigger>
       <Popover.Portal>
-        <Popover.Content className="PopoverContent" sideOffset={5}>
+        <Popover.Content
+          className="PopoverContent"
+          sideOffset={5}
+          onOpenAutoFocus={(e) => e.preventDefault()}
+        >
           <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
             <p className="Text" style={{ marginBottom: 10 }}>
               Edit {name}
@@ -48,5 +52,3 @@ function StatRowPopover({ name, iv, setIv, ev, setEv }) {
     </Popover.Root>
   );
 }
-
-export default StatRowPopover;

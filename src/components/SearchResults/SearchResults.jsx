@@ -1,6 +1,6 @@
-import { handleApiCall } from './../../utils/functions';
+import { handleApiCall } from '../../utils/functions';
 
-function SearchResults({ searchResults, setResponse }) {
+export default function SearchResults({ searchResults, setResponse }) {
   return (
     <div className="search-results">
       {searchResults.length > 0 ? (
@@ -19,5 +19,3 @@ function SearchResults({ searchResults, setResponse }) {
     </div>
   );
 }
-
-export default SearchResults;

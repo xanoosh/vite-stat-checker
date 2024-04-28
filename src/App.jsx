@@ -1,6 +1,6 @@
 import './styles/index.scss';
-import SearchColumn from './components/searchColumn/SearchColumn';
-import ResponseColumn from './components/responseColumn/ResponseColumn';
+import SearchColumn from './components/Views/SearchColumn/SearchColumn';
+import ResponseColumn from './components/Views/ResponseColumn/ResponseColumn';
 import { useState } from 'react';
 
 function App() {

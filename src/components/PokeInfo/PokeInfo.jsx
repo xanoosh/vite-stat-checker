@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 import { getStatAndEvData } from '../../utils/functions';
-import StatRow from './StatRow';
+import StatRow from '../StatRow/StatRow';
 import { naturesList } from '../../data';
-import SelectComponent from './SelectComponent';
+import SelectComponent from '../SelectComponent/SelectComponent';
 import NumberInput from '../NumberInput/NumberInput';
 
-function PokeInfo({ response }) {
+export default function PokeInfo({ response }) {
   const [effortValues, setEffortValues] = useState([]);
   const [stats, setStats] = useState(null);
   const [level, setLevel] = useState(localStorage.getItem('level') || 5);
@@ -67,5 +67,3 @@ function PokeInfo({ response }) {
     </div>
   );
 }
-
-export default PokeInfo;
