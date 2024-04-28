@@ -77,6 +77,46 @@
 /* response column styles */
 
 .response-column {
+  //base info
+  .basic-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+    .title {
+      h2 {
+        font-weight: 600;
+        line-height: 1;
+        font-size: 1.5rem;
+        &::first-letter {
+          text-transform: uppercase;
+        }
+      }
+      .id {
+        font-size: 1rem;
+        opacity: 0.8;
+        font-weight: 600;
+      }
+    }
+    .ev-yield {
+      h2 {
+        font-weight: 600;
+        font-size: 1.2rem;
+        margin-bottom: 0.2rem;
+      }
+      ul {
+        list-style-position: inside;
+        list-style-type: none;
+        li {
+          margin-bottom: 0.2rem;
+          span {
+            font-weight: bold;
+            font-size: 1rem;
+            color: $text-color-success;
+          }
+        }
+      }
+    }
+  }
   //stat numbers
   .stat-row {
     border-bottom: 1px solid $text-color-muted;

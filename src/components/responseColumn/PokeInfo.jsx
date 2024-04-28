@@ -19,9 +19,25 @@ function PokeInfo({ response }) {
 
   return (
     <div className="poke-info">
-      <h2>{response.name}</h2>
-      <img src={response.sprites.front_default} alt={response.name} />
-      <p>id: {response.id}</p>
+      <div className="basic-info">
+        <div className="title">
+          <h2>{response.name}</h2>
+          <p className="id">#{response.id}</p>
+          <img src={response.sprites.front_default} alt={response.name} />
+        </div>
+        <div className="ev-yield">
+          <h2>EV yield</h2>
+          {effortValues.length ? (
+            <ul>
+              {effortValues.map((el) => (
+                <li key={el.name}>
+                  {el.name}: <span>{el.effort}</span>
+                </li>
+              ))}
+            </ul>
+          ) : null}
+        </div>
+      </div>
       <h3>Stats:</h3>
       {stats?.length &&
         stats.map((el) => (
@@ -48,14 +64,6 @@ function PokeInfo({ response }) {
           onValueChange={setNature}
         />
       </div>
-
-      <p>IVs:</p>
-      {effortValues.length &&
-        effortValues.map((el) => (
-          <p key={el.name}>
-            {el.name}: {el.effort}
-          </p>
-        ))}
     </div>
   );
 }
