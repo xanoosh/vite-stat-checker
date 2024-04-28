@@ -17,34 +17,26 @@ function StatRowPopover({ name, iv, setIv, ev, setEv }) {
               Edit {name}
             </p>
             <fieldset className="Fieldset">
-              <label className="Label" htmlFor="individual-values">
-                Individual Values
-              </label>
-              <NumberInput value={iv} setValue={setIv} min={0} max={31} />
-              {/* <input
-                type="number"
+              <NumberInput
+                id="ivs"
+                label="Individual Values:"
+                value={iv}
+                setValue={setIv}
                 min={0}
                 max={31}
-                className="Input"
-                id="individual-values"
-                defaultValue={iv}
-                onChange={handleChangeIv}
-              /> */}
+                background="dark"
+              />
             </fieldset>
             <fieldset className="Fieldset">
-              <label className="Label" htmlFor="effort-values">
-                Effort Values
-              </label>
-              <NumberInput value={ev} setValue={setEv} min={0} max={252} />
-              {/* <input
-                type="number"
+              <NumberInput
+                id="evs"
+                label="Effort Values:"
+                value={ev}
+                setValue={setEv}
                 min={0}
                 max={252}
-                className="Input"
-                id="maxWidth"
-                defaultValue={ev}
-                onChange={handleChangeEv}
-              /> */}
+                background="dark"
+              />
             </fieldset>
           </div>
           <Popover.Close className="PopoverClose" aria-label="Close">

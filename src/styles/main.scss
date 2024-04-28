@@ -76,30 +76,39 @@
 
 /* response column styles */
 
-.response-column .stat-row {
-  border-bottom: 1px solid $text-color-muted;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.5rem;
-  .span-container {
-    width: 70%;
+.response-column {
+  //stat numbers
+  .stat-row {
+    border-bottom: 1px solid $text-color-muted;
     display: flex;
     justify-content: space-between;
-    //stat values bold
-    span {
-      &:last-of-type {
-        font-weight: 700;
+    align-items: center;
+    padding: 0.5rem;
+    .span-container {
+      width: 70%;
+      display: flex;
+      justify-content: space-between;
+      //stat values bold
+      span {
+        &:last-of-type {
+          font-weight: 700;
+        }
+      }
+      .increased {
+        color: $text-color-success;
+      }
+      .decreased {
+        color: $text-color-danger;
+      }
+      .neutral {
+        color: $text-color;
       }
     }
-    .increased {
-      color: $text-color-success;
-    }
-    .decreased {
-      color: $text-color-danger;
-    }
-    .neutral {
-      color: $text-color;
-    }
+  }
+  .input-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+    padding-top: 0.7rem;
   }
 }

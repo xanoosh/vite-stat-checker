@@ -32,14 +32,23 @@ function PokeInfo({ response }) {
             nature={nature}
           />
         ))}
-      <p>level:</p>
-      <NumberInput value={Number(level)} setValue={setLevel} />
-      <p>nature</p>
-      <SelectComponent
-        items={naturesList}
-        value={nature}
-        onValueChange={setNature}
-      />
+      <div className="input-container">
+        <NumberInput
+          id="level"
+          label="Level:"
+          value={Number(level)}
+          setValue={setLevel}
+          labelPosition="top"
+        />
+        <SelectComponent
+          id="nature"
+          label="Nature:"
+          items={naturesList}
+          value={nature}
+          onValueChange={setNature}
+        />
+      </div>
+
       <p>IVs:</p>
       {effortValues.length &&
         effortValues.map((el) => (

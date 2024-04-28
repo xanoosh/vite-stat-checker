@@ -1,9 +1,16 @@
 import { PlusIcon, MinusIcon } from '@radix-ui/react-icons';
+import * as Label from '@radix-ui/react-label';
 
-export default function NumberInput({ value, setValue, min = 1, max = 100 }) {
-  console.log('numberinput');
-  console.log('val:', typeof value);
-
+export default function NumberInput({
+  value,
+  setValue,
+  label,
+  id,
+  min = 1,
+  max = 100,
+  labelPosition,
+  background = 'light',
+}) {
   const handleClick = (variant) => {
     if (variant === 'decrement' && value === min) {
       return;
@@ -17,33 +24,49 @@ export default function NumberInput({ value, setValue, min = 1, max = 100 }) {
   };
 
   return (
-    <div className="number-input-container">
-      <button
-        type="button"
-        className="decrement-button"
-        tabIndex={-1}
-        onClick={() => handleClick('decrement')}
+    <div
+      className={`number-input-container ${
+        labelPosition === 'top' ? 'label-top' : null
+      }`}
+    >
+      {label && id ? (
+        <Label.Root className="label" htmlFor={id}>
+          <p>{label}</p>
+        </Label.Root>
+      ) : null}
+
+      <div
+        className={`number-input ${
+          background === 'dark' ? 'bg-dark' : 'bg-light'
+        }`}
       >
-        <MinusIcon className="button-icon" />
-      </button>
-      <input
-        type="number"
-        min={`${min}`}
-        max={`${max}`}
-        required
-        value={value}
-        onChange={(e) => {
-          setValue(e.target.value);
-        }}
-      />
-      <button
-        type="button"
-        className="increment-button"
-        tabIndex={-1}
-        onClick={() => handleClick('increment')}
-      >
-        <PlusIcon className="button-icon" />
-      </button>
+        <button
+          type="button"
+          className="decrement-button"
+          tabIndex={-1}
+          onClick={() => handleClick('decrement')}
+        >
+          <MinusIcon className="button-icon" />
+        </button>
+        <input
+          type="number"
+          min={`${min}`}
+          max={`${max}`}
+          id={id}
+          value={value}
+          onChange={(e) => {
+            setValue(e.target.value);
+          }}
+        />
+        <button
+          type="button"
+          className="increment-button"
+          tabIndex={-1}
+          onClick={() => handleClick('increment')}
+        >
+          <PlusIcon className="button-icon" />
+        </button>
+      </div>
     </div>
   );
 }
