@@ -1,6 +1,7 @@
 import * as Popover from '@radix-ui/react-popover';
 import { MixerHorizontalIcon, Cross2Icon } from '@radix-ui/react-icons';
 import NumberInput from '../NumberInput/NumberInput';
+import Button from '../Button/Button';
 
 export default function PopoverComponent({ name, iv, setIv, ev, setEv }) {
   return (
@@ -11,37 +12,41 @@ export default function PopoverComponent({ name, iv, setIv, ev, setEv }) {
         </button>
       </Popover.Trigger>
       <Popover.Portal>
-        <Popover.Content
-          className="PopoverContent"
-          sideOffset={5}
-          onOpenAutoFocus={(e) => e.preventDefault()}
-        >
+        <Popover.Content className="PopoverContent" sideOffset={5}>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
             <p className="Text" style={{ marginBottom: 10 }}>
               Edit {name}
             </p>
-            <fieldset className="Fieldset">
-              <NumberInput
-                id="ivs"
-                label="Individual Values:"
-                value={iv}
-                setValue={setIv}
-                min={0}
-                max={31}
-                background="dark"
+            <div className="popover-buttons">
+              <Button
+                variant="main"
+                text={`max Ev's`}
+                onClick={() => setEv(252)}
               />
-            </fieldset>
-            <fieldset className="Fieldset">
-              <NumberInput
-                id="evs"
-                label="Effort Values:"
-                value={ev}
-                setValue={setEv}
-                min={0}
-                max={252}
-                background="dark"
+              <Button
+                variant="main"
+                text={`min Ev's`}
+                onClick={() => setEv(0)}
               />
-            </fieldset>
+            </div>
+            <NumberInput
+              id="evs"
+              label="Effort Values:"
+              value={ev}
+              setValue={setEv}
+              min={0}
+              max={252}
+              background="dark"
+            />
+            <NumberInput
+              id="ivs"
+              label="Individual Values:"
+              value={iv}
+              setValue={setIv}
+              min={0}
+              max={31}
+              background="dark"
+            />
           </div>
           <Popover.Close className="PopoverClose" aria-label="Close">
             <Cross2Icon />

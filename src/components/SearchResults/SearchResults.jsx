@@ -1,4 +1,5 @@
 import { handleApiCall } from '../../utils/functions';
+import Button from '../Button/Button';
 
 export default function SearchResults({ searchResults, setResponse }) {
   return (
@@ -6,11 +7,11 @@ export default function SearchResults({ searchResults, setResponse }) {
       {searchResults.length > 0 ? (
         searchResults.map((searchResult) => (
           <div key={searchResult.item.id} className="search-results-column">
-            <button
+            <Button
+              variant="bordered"
+              text={searchResult.item.name}
               onClick={() => handleApiCall(searchResult.item.id, setResponse)}
-            >
-              {searchResult.item.name}
-            </button>
+            />
           </div>
         ))
       ) : (

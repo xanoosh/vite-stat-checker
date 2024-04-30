@@ -79,3 +79,19 @@ input {
 .Input:focus {
   box-shadow: 0 0 0 2px $primary-color;
 }
+
+.popover-buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  button {
+    background-color: $primary-color;
+    color: $text-color;
+    border-radius: 0.2rem;
+    padding: 0.3rem 0.7rem;
+    // padding: ;
+    &:focus {
+      background-color: rebeccapurple;
+    }
+  }
+}
