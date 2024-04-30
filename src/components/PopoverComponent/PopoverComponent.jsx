@@ -7,16 +7,19 @@ export default function PopoverComponent({ name, iv, setIv, ev, setEv }) {
   return (
     <Popover.Root>
       <Popover.Trigger asChild>
-        <button className="IconButton" aria-label="Update dimensions">
+        <button className="popover-trigger" aria-label="Update dimensions">
           <MixerHorizontalIcon />
         </button>
       </Popover.Trigger>
       <Popover.Portal>
-        <Popover.Content className="PopoverContent" sideOffset={5}>
+        <Popover.Content className="popover-content" sideOffset={5}>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-            <p className="Text" style={{ marginBottom: 10 }}>
-              Edit {name}
-            </p>
+            <div className="popover-heading">
+              <h2 className="Text">{name}</h2>
+              <Popover.Close className="popover-close" aria-label="Close">
+                <Cross2Icon />
+              </Popover.Close>
+            </div>
             <div className="popover-buttons">
               <Button
                 variant="main"
@@ -48,10 +51,6 @@ export default function PopoverComponent({ name, iv, setIv, ev, setEv }) {
               background="dark"
             />
           </div>
-          <Popover.Close className="PopoverClose" aria-label="Close">
-            <Cross2Icon />
-          </Popover.Close>
-          <Popover.Arrow className="PopoverArrow" />
         </Popover.Content>
       </Popover.Portal>
     </Popover.Root>

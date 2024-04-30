@@ -16,6 +16,9 @@
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    &.search-column {
+      padding: 0;
+    }
   }
   #root .container > div.response-column {
     height: 100vh;
@@ -35,16 +38,14 @@
 /* search column styles */
 
 .search-input {
+  margin: 0 1rem;
   padding: 0.75rem;
-  width: 100%;
   border: 1px solid $text-color-muted;
   border-radius: 0.25rem;
   outline: none;
-  input {
-    &:focus,
-    &:active {
-      border: 1px solid $primary-color;
-    }
+
+  &:focus {
+    box-shadow: 0 0 0 0.2rem $bg-color-light, 0 0 0 0.3rem $primary-color;
   }
 }
 
@@ -55,22 +56,11 @@
   overflow-y: auto;
   display: flex;
   flex-wrap: wrap;
+  padding: 0.5rem 1rem;
   gap: 1rem;
   align-content: flex-start;
   .search-results-column {
     width: calc(50% - 0.5rem);
-  }
-  button {
-    cursor: pointer;
-    width: 100%;
-    height: 3rem;
-    border-radius: 0.25rem;
-    border: 1px solid $text-color-muted;
-    text-align: center;
-    &:hover {
-      color: $primary-color;
-      border-color: $primary-color;
-    }
   }
 }
 
