@@ -9,7 +9,7 @@ export default function SelectComponent({
   label,
   id,
 }) {
-  if (items.length === 0) return null;
+  if (!items || items?.length === 0) return null;
   return (
     <div className="select-container">
       {label && id ? (

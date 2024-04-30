@@ -58,7 +58,7 @@ describe('NumberInput Component', () => {
   });
   it('component should have label if id&label props are passed', () => {
     render(<NumberInput id="test-id" label="test-label" />);
-    expect(screen.getByText('test-label')).toBeInTheDocument();
+    expect(screen.getByLabelText('test-label')).toBeInTheDocument();
   });
 
   const setValueMock = vi.fn();
