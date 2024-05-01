@@ -1,10 +1,14 @@
 import { handleApiCall } from '../../utils/functions';
 import Button from '../Button/Button';
 
-export default function SearchResults({ searchResults, setResponse }) {
+export default function SearchResults({
+  searchResults,
+  setResponse,
+  empty = 'No results.',
+}) {
   return (
     <div className="search-results">
-      {searchResults.length > 0 ? (
+      {searchResults && searchResults.length > 0 ? (
         searchResults.map((searchResult) => (
           <div key={searchResult.item.id} className="search-results-column">
             <Button
@@ -15,7 +19,7 @@ export default function SearchResults({ searchResults, setResponse }) {
           </div>
         ))
       ) : (
-        <p className="muted">No results.</p>
+        <p className="muted">{empty}</p>
       )}
     </div>
   );
