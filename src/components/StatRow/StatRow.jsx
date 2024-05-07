@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { calculateStatFormula } from '../../utils/functions';
 import StatRowPopover from '../PopoverComponent/PopoverComponent';
-import { getNatureModifier } from '../../utils/functions';
+import { getNatureModifier, formatStatName } from '../../utils/functions';
 
 function StatRow({ data, level, nature, iv = 31, ev = 0 }) {
   const [statValue, setStatValue] = useState(
@@ -33,11 +33,11 @@ function StatRow({ data, level, nature, iv = 31, ev = 0 }) {
   return (
     <div className="stat-row">
       <div className="span-container">
-        <span>{data.name}</span>
+        <span>{formatStatName(data.name)}</span>
         <span className={statClassName}>{statValue}</span>
       </div>
       <StatRowPopover
-        name={data.name}
+        name={formatStatName(data.name)}
         iv={ivState}
         setIv={setIvState}
         ev={evState}

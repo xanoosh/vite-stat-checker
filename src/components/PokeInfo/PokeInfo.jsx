@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { getStatAndEvData } from '../../utils/functions';
+import { getStatAndEvData, formatStatName } from '../../utils/functions';
 import StatRow from '../StatRow/StatRow';
 import { naturesList } from '../../data';
 import SelectComponent from '../SelectComponent/SelectComponent';
@@ -20,14 +20,17 @@ export default function PokeInfo({ response }) {
 
   return (
     <div className="poke-info">
+      <div className="title-section">
+        <h2>
+          <span>{response.name}</span>
+          <span className="id">#{response.id}</span>
+        </h2>
+      </div>
       <div className="basic-info">
-        <div className="title">
-          <h2>{response.name}</h2>
-          <p className="id">#{response.id}</p>
+        <div className="sprite">
           <img src={response.sprites.front_default} alt={response.name} />
         </div>
         <div className="types">
-          <h2>Types</h2>
           {response.types.length
             ? response.types.map((typeObj) => (
                 <TypeBadge typeName={typeObj.type.name} />
@@ -40,7 +43,7 @@ export default function PokeInfo({ response }) {
             <ul>
               {effortValues.map((el) => (
                 <li key={el.name}>
-                  {el.name}: <span>{el.effort}</span>
+                  {formatStatName(el.name)}: <span>{el.effort}</span>
                 </li>
               ))}
             </ul>

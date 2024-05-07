@@ -67,6 +67,12 @@ export const scrollIntoResult = () => {
   }
 };
 
+export const formatStatName = (statName) => {
+  if (statName === 'special-attack') return 'spAttack';
+  if (statName === 'special-defense') return 'spDefense';
+  return statName;
+};
+
 export const getTypeColor = (typeName) => {
   switch (typeName) {
     case 'normal':
