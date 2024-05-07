@@ -76,7 +76,7 @@
   //base info
   .basic-info {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     gap: 0.5rem;
     .title {
       h2 {
@@ -91,6 +91,25 @@
         font-size: 1rem;
         opacity: 0.8;
         font-weight: 600;
+      }
+    }
+    .types {
+      h2 {
+        font-weight: 600;
+        font-size: 1.2rem;
+        margin-bottom: 0.2rem;
+      }
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      .type-badge {
+        border-radius: 0.5rem;
+        text-align: center;
+        padding: 0.2rem;
+        width: 7rem;
+        &:first-letter {
+          text-transform: uppercase;
+        }
       }
     }
     .ev-yield {

@@ -4,6 +4,7 @@ import StatRow from '../StatRow/StatRow';
 import { naturesList } from '../../data';
 import SelectComponent from '../SelectComponent/SelectComponent';
 import NumberInput from '../NumberInput/NumberInput';
+import TypeBadge from '../TypeBadge/TypeBadge';
 
 export default function PokeInfo({ response }) {
   const [effortValues, setEffortValues] = useState([]);
@@ -24,6 +25,14 @@ export default function PokeInfo({ response }) {
           <h2>{response.name}</h2>
           <p className="id">#{response.id}</p>
           <img src={response.sprites.front_default} alt={response.name} />
+        </div>
+        <div className="types">
+          <h2>Types</h2>
+          {response.types.length
+            ? response.types.map((typeObj) => (
+                <TypeBadge typeName={typeObj.type.name} />
+              ))
+            : null}
         </div>
         <div className="ev-yield">
           <h2>EV yield</h2>
