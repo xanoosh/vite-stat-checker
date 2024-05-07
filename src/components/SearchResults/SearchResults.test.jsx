@@ -22,9 +22,11 @@ describe('SearchResults Component', () => {
     const { container } = render(<SearchResults searchResults={[]} />);
     expect(container.querySelector('button')).not.toBeInTheDocument();
   });
-  it('should display error "No results." if searchResults&empty prop is not passed/is empty', () => {
+  it('should display text "Type name above to see results." if searchResults&empty prop is not passed/is empty', () => {
     render(<SearchResults />);
-    expect(screen.getByText('No results.')).toBeInTheDocument();
+    expect(
+      screen.getByText('Type name above to see results.')
+    ).toBeInTheDocument();
   });
   it('should display error equal to empty prop if searchResults array is not passed/is empty', () => {
     render(<SearchResults empty="test-error-message" />);

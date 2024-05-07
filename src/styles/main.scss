@@ -25,6 +25,12 @@
   }
 }
 
+.search-column {
+  h1 {
+    margin: 0 1rem;
+  }
+}
+
 @media (min-width: 993px) {
   #root .container > div {
     flex: 50%;

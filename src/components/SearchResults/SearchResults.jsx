@@ -4,7 +4,7 @@ import Button from '../Button/Button';
 export default function SearchResults({
   searchResults,
   setResponse,
-  empty = 'No results.',
+  empty = 'Type name above to see results.',
 }) {
   return (
     <div className="search-results">
