@@ -1,17 +1,19 @@
+import Loader from '../Loader/Loader';
+
 export default function SearchInput({
   loading,
   handleSearch,
   placeholder = 'type name here',
 }) {
   return (
-    <div className="input-container">
+    <div className="search-input-container">
       <input
         className="search-input"
         placeholder={placeholder}
         type="text"
         onChange={(e) => (handleSearch ? handleSearch(e.target.value) : null)}
       />
-      {loading ? <p>LOADING</p> : null}
+      <Loader loading={loading} />
     </div>
   );
 }
