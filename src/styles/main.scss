@@ -9,6 +9,15 @@
   height: 100vh;
 }
 
+.search-column {
+  h1 {
+    margin: 0 1rem;
+    font-weight: 600;
+    line-height: 1;
+    font-size: 2rem;
+  }
+}
+
 @media (max-width: 992px) {
   #root .container > div {
     flex: 100%;
@@ -18,16 +27,13 @@
     gap: 1rem;
     &.search-column {
       padding: 0;
+      h1 {
+        margin: 1rem 1rem 0 1rem;
+      }
     }
   }
   #root .container > div.response-column {
     height: 100vh;
-  }
-}
-
-.search-column {
-  h1 {
-    margin: 0 1rem;
   }
 }
 

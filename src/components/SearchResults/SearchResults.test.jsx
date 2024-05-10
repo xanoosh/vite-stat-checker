@@ -47,12 +47,9 @@ describe('SearchResults Component', () => {
     ).toBeTruthy();
   });
 
-  it('should call passed setResponse function on each button click', async () => {
+  it('should call passed setId function on each button click', async () => {
     const { container } = render(
-      <SearchResults
-        searchResults={searchResultsArray}
-        setResponse={onClickMock}
-      />
+      <SearchResults searchResults={searchResultsArray} setId={onClickMock} />
     );
     fireEvent.click(container.querySelector('button'));
     await waitFor(() => expect(onClickMock).toHaveBeenCalledTimes(1));
