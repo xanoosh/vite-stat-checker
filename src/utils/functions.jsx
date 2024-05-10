@@ -1,23 +1,5 @@
 import { naturesMap } from '../data';
 
-export const handleApiCall = (pokeId, setPokeData) => {
-  if (localStorage.getItem(pokeId)) {
-    setPokeData(JSON.parse(localStorage.getItem(pokeId)));
-    scrollIntoResult();
-  } else {
-    fetch(`https://pokeapi.co/api/v2/pokemon/${pokeId}`)
-      .then((response) => {
-        if (!response.ok) console.error(response.error);
-        return response.json();
-      })
-      .then((result) => {
-        setPokeData(result);
-        scrollIntoResult();
-        localStorage.setItem(pokeId, JSON.stringify(result));
-      });
-  }
-};
-
 export const getNatureModifier = (statName, nature) => {
   if (statName === 'hp') return 1;
   if (nature === 'Neutral') return 1;

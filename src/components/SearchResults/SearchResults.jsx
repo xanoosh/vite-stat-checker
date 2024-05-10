@@ -1,9 +1,8 @@
-import { handleApiCall } from '../../utils/functions';
 import Button from '../Button/Button';
 
 export default function SearchResults({
   searchResults,
-  setResponse,
+  setId,
   empty = 'Type name above to see results.',
 }) {
   return (
@@ -14,7 +13,7 @@ export default function SearchResults({
             <Button
               variant="bordered"
               text={searchResult.item.name}
-              onClick={() => handleApiCall(searchResult.item.id, setResponse)}
+              onClick={() => setId(searchResult.item.id)}
             />
           </div>
         ))
