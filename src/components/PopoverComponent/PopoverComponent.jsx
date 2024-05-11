@@ -23,13 +23,27 @@ export default function PopoverComponent({ name, iv, setIv, ev, setEv }) {
             <div className="popover-buttons">
               <Button
                 variant="main"
+                disabled={ev === 252}
                 text={`max Ev's`}
                 onClick={() => setEv(252)}
               />
               <Button
                 variant="main"
+                disabled={ev === 0}
                 text={`min Ev's`}
                 onClick={() => setEv(0)}
+              />
+              <Button
+                variant="main"
+                disabled={iv === 31}
+                text={`max Iv's`}
+                onClick={() => setIv(31)}
+              />
+              <Button
+                variant="main"
+                disabled={iv === 0}
+                text={`min Iv's`}
+                onClick={() => setIv(0)}
               />
             </div>
             <NumberInput

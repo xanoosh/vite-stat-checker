@@ -3,6 +3,10 @@
   border-radius: 0.2rem;
   padding: 0.3rem 1.5rem;
   text-align: center;
+  &.disabled {
+    opacity: 0.75;
+    cursor: not-allowed;
+  }
   &.main {
     width: 7rem;
     background-color: $primary-color;

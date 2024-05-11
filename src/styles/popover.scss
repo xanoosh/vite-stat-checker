@@ -50,9 +50,11 @@
     margin-bottom: 0.5rem;
   }
   .popover-buttons {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     gap: 1rem;
+    button {
+      width: 100%;
+    }
   }
 }
