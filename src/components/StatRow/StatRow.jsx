@@ -1,9 +1,20 @@
 import { useEffect, useState } from 'react';
-import { calculateStatFormula } from '../../utils/functions';
 import StatRowPopover from '../PopoverComponent/PopoverComponent';
-import { getNatureModifier, formatStatName } from '../../utils/functions';
+import {
+  calculateStatFormula,
+  getNatureModifier,
+  formatStatName,
+} from '../../utils/functions';
 
-function StatRow({ data, level, nature, iv = 31, ev = 0 }) {
+function StatRow({
+  formattedName,
+  data,
+  level,
+  nature,
+  statModifiers,
+  setStatModifiers,
+}) {
+  const { ev, iv } = statModifiers[formattedName];
   const [statValue, setStatValue] = useState(
     calculateStatFormula(data.name, data.base_stat, level, iv, ev, nature)
   );
@@ -20,6 +31,10 @@ function StatRow({ data, level, nature, iv = 31, ev = 0 }) {
       evState,
       nature
     );
+    setStatModifiers((prev) => ({
+      ...prev,
+      [formattedName]: { ev: evState, iv: ivState },
+    }));
     setStatValue(newStatValue);
   }, [evState, ivState, level, nature]);
 
@@ -33,7 +48,12 @@ function StatRow({ data, level, nature, iv = 31, ev = 0 }) {
   return (
     <div className="stat-row">
       <div className="span-container">
-        <span>{formatStatName(data.name)}</span>
+        <span className="stat-name">
+          {formatStatName(data.name)}
+          {iv === 31 && ev === 0 ? null : (
+            <div className="stat-badge">Modified</div>
+          )}
+        </span>
         <span className={statClassName}>{statValue}</span>
       </div>
       <StatRowPopover

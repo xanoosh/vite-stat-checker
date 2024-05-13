@@ -5,13 +5,39 @@ import { naturesList } from '../../data';
 import SelectComponent from '../SelectComponent/SelectComponent';
 import NumberInput from '../NumberInput/NumberInput';
 import TypeBadge from '../TypeBadge/TypeBadge';
+import Button from '../Button/Button';
 
 export default function PokeInfo({ response }) {
   const [effortValues, setEffortValues] = useState([]);
   const [stats, setStats] = useState(null);
+  const [nature, setNature] = useState(
+    localStorage.getItem('nature') || 'Neutral'
+  );
   const [level, setLevel] = useState(localStorage.getItem('level') || 5);
-  const [nature, setNature] = useState('Neutral');
+  const [statModifiers, setStatModifiers] = useState(
+    localStorage.getItem('stat-modifiers')
+      ? JSON.parse(localStorage.getItem('stat-modifiers'))
+      : {
+          hp: { ev: 0, iv: 31 },
+          attack: { ev: 0, iv: 31 },
+          defense: { ev: 0, iv: 31 },
+          spAttack: { ev: 0, iv: 31 },
+          spDefense: { ev: 0, iv: 31 },
+          speed: { ev: 0, iv: 31 },
+        }
+  );
 
+  // set local storage data on change
+  useEffect(() => {
+    localStorage.setItem('nature', nature);
+  }, [nature]);
+  useEffect(() => {
+    localStorage.setItem('level', level);
+  }, [level]);
+  useEffect(() => {
+    localStorage.setItem('stat-modifiers', JSON.stringify(statModifiers));
+  }, [statModifiers]);
+  // set stats
   useEffect(() => {
     const { effortValuesData, statsData } = getStatAndEvData(response);
     setEffortValues(effortValuesData);
@@ -50,14 +76,16 @@ export default function PokeInfo({ response }) {
           ) : null}
         </div>
       </div>
-      <h3>Stats:</h3>
       {stats?.length &&
         stats.map((el) => (
           <StatRow
             key={el.base_stat + el.name}
+            formattedName={formatStatName(el.name)}
             data={el}
             level={level}
             nature={nature}
+            statModifiers={statModifiers}
+            setStatModifiers={setStatModifiers}
           />
         ))}
       <div className="input-container">
@@ -75,6 +103,24 @@ export default function PokeInfo({ response }) {
           value={nature}
           onValueChange={setNature}
         />
+        <div style={{ marginTop: '1rem' }}>
+          <Button
+            variant="main"
+            text="Reset all"
+            onClick={() => {
+              setStatModifiers({
+                hp: { ev: 0, iv: 31 },
+                attack: { ev: 0, iv: 31 },
+                defense: { ev: 0, iv: 31 },
+                spAttack: { ev: 0, iv: 31 },
+                spDefense: { ev: 0, iv: 31 },
+                speed: { ev: 0, iv: 31 },
+              });
+              setNature('Neutral');
+              setLevel(5);
+            }}
+          />
+        </div>
       </div>
     </div>
   );
