@@ -16,6 +16,10 @@
 }
 
 .popover-content {
+  .popover-arrow {
+    fill: $bg-color-light;
+  }
+
   border-radius: 4px;
   padding: 0.7rem 1.2rem;
   background-color: $bg-color-light;

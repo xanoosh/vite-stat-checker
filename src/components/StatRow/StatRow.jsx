@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import StatRowPopover from '../PopoverComponent/PopoverComponent';
+import { ExclamationTriangleIcon } from '@radix-ui/react-icons';
 import {
   calculateStatFormula,
   getNatureModifier,
@@ -51,7 +52,7 @@ function StatRow({
         <span className="stat-name">
           {formatStatName(data.name)}
           {iv === 31 && ev === 0 ? null : (
-            <div className="stat-badge">Modified</div>
+            <ExclamationTriangleIcon className="stat-badge" />
           )}
         </span>
         <span className={statClassName}>{statValue}</span>

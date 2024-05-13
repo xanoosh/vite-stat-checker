@@ -12,7 +12,11 @@ export default function PopoverComponent({ name, iv, setIv, ev, setEv }) {
         </button>
       </Popover.Trigger>
       <Popover.Portal>
-        <Popover.Content className="popover-content" sideOffset={5}>
+        <Popover.Content
+          className="popover-content"
+          sideOffset={3}
+          // alignOffset={2}
+        >
           <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
             <div className="popover-heading">
               <h2 className="Text">{name}</h2>
@@ -32,15 +36,15 @@ export default function PopoverComponent({ name, iv, setIv, ev, setEv }) {
             <div className="popover-buttons">
               <Button
                 variant="main"
-                disabled={Number(ev) === 252}
-                text={`max Ev's`}
-                onClick={() => setEv(252)}
-              />
-              <Button
-                variant="main"
                 disabled={Number(ev) === 0}
                 text={`min Ev's`}
                 onClick={() => setEv(0)}
+              />
+              <Button
+                variant="main"
+                disabled={Number(ev) === 252}
+                text={`max Ev's`}
+                onClick={() => setEv(252)}
               />
             </div>
             <NumberInput
@@ -55,18 +59,19 @@ export default function PopoverComponent({ name, iv, setIv, ev, setEv }) {
             <div className="popover-buttons">
               <Button
                 variant="main"
-                disabled={Number(iv) === 31}
-                text={`max Iv's`}
-                onClick={() => setIv(31)}
-              />
-              <Button
-                variant="main"
                 disabled={Number(iv) === 0}
                 text={`min Iv's`}
                 onClick={() => setIv(0)}
               />
+              <Button
+                variant="main"
+                disabled={Number(iv) === 31}
+                text={`max Iv's`}
+                onClick={() => setIv(31)}
+              />
             </div>
           </div>
+          <Popover.Arrow className="popover-arrow" />
         </Popover.Content>
       </Popover.Portal>
     </Popover.Root>

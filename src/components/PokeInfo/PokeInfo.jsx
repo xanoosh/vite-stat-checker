@@ -59,7 +59,10 @@ export default function PokeInfo({ response }) {
         <div className="types">
           {response.types.length
             ? response.types.map((typeObj) => (
-                <TypeBadge typeName={typeObj.type.name} />
+                <TypeBadge
+                  key={typeObj.type.name}
+                  typeName={typeObj.type.name}
+                />
               ))
             : null}
         </div>
