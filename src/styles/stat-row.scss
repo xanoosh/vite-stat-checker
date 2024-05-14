@@ -1,0 +1,58 @@
+.stat-row {
+  border-bottom: 1px solid $text-color-muted;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem;
+  .stat-name {
+    position: relative;
+    font-size: 1.1rem;
+  }
+
+  .stat-container {
+    width: 70%;
+    display: grid;
+    grid-template-columns: 3fr 3fr 1fr;
+    .stat-badges {
+      display: flex;
+      flex-direction: row;
+      gap: 0.5rem;
+      .stat-badge {
+        color: $bg-color;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0.1rem;
+        padding: 0 0.3rem;
+        font-size: 0.6rem;
+        font-weight: 600;
+        border-radius: 0.3rem;
+        top: -0.07rem;
+        left: calc(100% - 0.07rem);
+        svg {
+          width: 0.7rem;
+        }
+        &.up {
+          background-color: $text-color-success;
+        }
+        &.down {
+          background-color: $text-color-danger;
+        }
+      }
+    }
+    span {
+      &:last-of-type {
+        font-weight: 700;
+      }
+    }
+    .increased {
+      color: $text-color-success;
+    }
+    .decreased {
+      color: $text-color-danger;
+    }
+    .neutral {
+      color: $text-color;
+    }
+  }
+}
