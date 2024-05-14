@@ -3,13 +3,16 @@ export default function Button({
   onClick,
   variant = 'main',
   disabled = false,
+  fullWidth,
 }) {
   return (
     <button
       type="button"
       disabled={disabled}
       onClick={onClick}
-      className={`button-component ${variant}`}
+      className={`button-component ${variant} ${disabled ? 'disabled' : ''} ${
+        fullWidth ? 'full-width' : ''
+      }`}
     >
       {text}
     </button>

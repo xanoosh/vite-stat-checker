@@ -10,6 +10,7 @@ export default function NumberInput({
   max = 100,
   labelPosition,
   background = 'light',
+  fullWidth,
 }) {
   const handleClick = (variant) => {
     if (variant === 'decrement' && value === min) {
@@ -38,7 +39,7 @@ export default function NumberInput({
       <div
         className={`number-input ${
           background === 'dark' ? 'bg-dark' : 'bg-light'
-        }`}
+        } ${fullWidth ? 'full-width' : ''}`}
       >
         <button
           type="button"

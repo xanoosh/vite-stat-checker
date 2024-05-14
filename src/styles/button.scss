@@ -7,8 +7,10 @@
     opacity: 0.6;
     cursor: not-allowed;
   }
-  &.main {
+  &:not(.full-width) {
     min-width: 7rem;
+  }
+  &.main {
     background-color: $primary-color;
     color: $text-color;
     &:focus {
@@ -17,7 +19,6 @@
     }
   }
   &.danger {
-    min-width: 7rem;
     background-color: $text-color-danger;
     color: $bg-color;
     &:focus {
@@ -26,7 +27,6 @@
     }
   }
   &.success {
-    min-width: 7rem;
     background-color: $text-color-success;
     color: $bg-color;
     &:focus {
@@ -35,7 +35,6 @@
     }
   }
   &.bordered {
-    width: 100%;
     height: 3rem;
     border: 1px solid $text-color-muted;
     &:hover,

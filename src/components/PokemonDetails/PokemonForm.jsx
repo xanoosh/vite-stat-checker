@@ -3,16 +3,11 @@ import NumberInput from '../NumberInput/NumberInput';
 import SelectComponent from '../SelectComponent/SelectComponent';
 import Button from '../Button/Button';
 
-export default function PokemonForm({
-  level,
-  setLevel,
-  nature,
-  setNature,
-  setStatModifiers,
-}) {
+export default function PokemonForm({ level, setLevel, nature, setNature }) {
   return (
     <div className="pokemon-form">
       <NumberInput
+        fullWidth
         id="level"
         label="Level:"
         value={Number(level)}
@@ -20,6 +15,7 @@ export default function PokemonForm({
         labelPosition="top"
       />
       <SelectComponent
+        fullWidth
         id="nature"
         label="Nature:"
         items={naturesList}

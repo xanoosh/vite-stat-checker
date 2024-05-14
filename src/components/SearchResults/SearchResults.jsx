@@ -12,6 +12,7 @@ export default function SearchResults({
           <div key={searchResult.item.id} className="search-results-column">
             <Button
               variant="bordered"
+              fullWidth
               text={searchResult.item.name}
               onClick={() => setId(searchResult.item.id)}
             />

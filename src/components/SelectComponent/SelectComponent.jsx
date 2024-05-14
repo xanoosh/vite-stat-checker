@@ -8,6 +8,7 @@ export default function SelectComponent({
   onValueChange,
   label,
   id,
+  fullWidth,
 }) {
   if (!items || items?.length === 0) return null;
   return (
@@ -18,7 +19,10 @@ export default function SelectComponent({
         </Label.Root>
       ) : null}
       <Select.Root value={value} onValueChange={(e) => onValueChange(e)}>
-        <Select.Trigger id={id} className="select-trigger">
+        <Select.Trigger
+          id={id}
+          className={`select-trigger ${fullWidth ? 'full-width' : ''}`}
+        >
           <Select.Value>{value}</Select.Value>
           <Select.Icon>
             <ChevronDownIcon />
@@ -26,7 +30,7 @@ export default function SelectComponent({
         </Select.Trigger>
         <Select.Portal>
           <Select.Content
-            className="select-content"
+            className={`select-content ${fullWidth ? 'full-width' : ''}`}
             sideOffset={3}
             position="popper"
           >

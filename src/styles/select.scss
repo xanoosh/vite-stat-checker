@@ -1,7 +1,9 @@
 %input-style {
   border-radius: 0.2rem;
   padding: 0.4rem 1.2rem;
-  width: 7rem;
+  &:not(.full-width) {
+    width: 7rem;
+  }
   font-size: 0.9rem;
   color: $text-color;
   cursor: pointer;
@@ -32,7 +34,7 @@
   background-color: $bg-color-light;
   border-radius: 3px;
   max-height: 16rem;
-  overflow-y: scroll;
+  width: 100%;
   .select-item {
     @extend %input-style;
     display: flex;

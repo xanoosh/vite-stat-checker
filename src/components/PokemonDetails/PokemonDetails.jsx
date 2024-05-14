@@ -89,7 +89,6 @@ export default function PokemonDetails({ response }) {
         setNature={setNature}
         level={level}
         setLevel={setLevel}
-        setStatModifiers={setStatModifiers}
       />
       <AlertComponent
         setLevel={setLevel}

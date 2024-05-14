@@ -9,7 +9,9 @@ export default function AlertComponent({
   return (
     <AlertDialog.Root>
       <AlertDialog.Trigger asChild>
-        <button className="button-component danger">Reset</button>
+        <button className="alert-trigger button-component danger full-width">
+          Reset
+        </button>
       </AlertDialog.Trigger>
       <AlertDialog.Portal>
         <AlertDialog.Overlay className="alert-overlay" />
