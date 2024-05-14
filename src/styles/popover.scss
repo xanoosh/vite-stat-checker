@@ -16,6 +16,7 @@
 }
 
 .popover-content {
+  z-index: 100;
   .popover-arrow {
     fill: $bg-color-light;
   }

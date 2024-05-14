@@ -1,13 +1,11 @@
 import { useState, useEffect } from 'react';
 import { getStatAndEvData, formatStatName } from '../../utils/functions';
-import StatRow from '../StatRow/StatRow';
-import { naturesList } from '../../data';
-import SelectComponent from '../SelectComponent/SelectComponent';
-import NumberInput from '../NumberInput/NumberInput';
 import TypeBadge from '../TypeBadge/TypeBadge';
-import Button from '../Button/Button';
+import PokemonStats from './PokemonStats';
+import PokemonForm from './PokemonForm';
+import AlertComponent from '../AlertComponent/AlertComponent';
 
-export default function PokeInfo({ response }) {
+export default function PokemonDetails({ response }) {
   const [effortValues, setEffortValues] = useState([]);
   const [stats, setStats] = useState(null);
   const [nature, setNature] = useState(
@@ -79,52 +77,25 @@ export default function PokeInfo({ response }) {
           ) : null}
         </div>
       </div>
-      {stats?.length &&
-        stats.map((el) => (
-          <StatRow
-            key={el.base_stat + el.name}
-            formattedName={formatStatName(el.name)}
-            data={el}
-            level={level}
-            nature={nature}
-            statModifiers={statModifiers}
-            setStatModifiers={setStatModifiers}
-          />
-        ))}
-      <div className="input-container">
-        <NumberInput
-          id="level"
-          label="Level:"
-          value={Number(level)}
-          setValue={setLevel}
-          labelPosition="top"
-        />
-        <SelectComponent
-          id="nature"
-          label="Nature:"
-          items={naturesList}
-          value={nature}
-          onValueChange={setNature}
-        />
-        <div style={{ marginTop: '1rem' }}>
-          <Button
-            variant="main"
-            text="Reset all"
-            onClick={() => {
-              setStatModifiers({
-                hp: { ev: 0, iv: 31 },
-                attack: { ev: 0, iv: 31 },
-                defense: { ev: 0, iv: 31 },
-                spAttack: { ev: 0, iv: 31 },
-                spDefense: { ev: 0, iv: 31 },
-                speed: { ev: 0, iv: 31 },
-              });
-              setNature('Neutral');
-              setLevel(5);
-            }}
-          />
-        </div>
-      </div>
+      <PokemonStats
+        stats={stats}
+        statModifiers={statModifiers}
+        setStatModifiers={setStatModifiers}
+        level={level}
+        nature={nature}
+      />
+      <PokemonForm
+        nature={nature}
+        setNature={setNature}
+        level={level}
+        setLevel={setLevel}
+        setStatModifiers={setStatModifiers}
+      />
+      <AlertComponent
+        setLevel={setLevel}
+        setNature={setNature}
+        setStatModifiers={setStatModifiers}
+      />
     </div>
   );
 }

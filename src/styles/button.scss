@@ -8,12 +8,30 @@
     cursor: not-allowed;
   }
   &.main {
-    width: 7rem;
+    min-width: 7rem;
     background-color: $primary-color;
     color: $text-color;
     &:focus {
       outline: none;
       box-shadow: 0 0 0 0.2rem $bg-color-light, 0 0 0 0.3rem $primary-color;
+    }
+  }
+  &.danger {
+    min-width: 7rem;
+    background-color: $text-color-danger;
+    color: $bg-color;
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 0 0.2rem $bg-color-light, 0 0 0 0.3rem $text-color-danger;
+    }
+  }
+  &.success {
+    min-width: 7rem;
+    background-color: $text-color-success;
+    color: $bg-color;
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 0 0.2rem $bg-color-light, 0 0 0 0.3rem $text-color-success;
     }
   }
   &.bordered {

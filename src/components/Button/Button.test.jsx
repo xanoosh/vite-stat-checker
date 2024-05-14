@@ -11,6 +11,10 @@ describe('Button Component', () => {
     render(<Button text="test-button" />);
     expect(screen.getByText('test-button')).toBeInTheDocument();
   });
+  it('component should have className="main" if variant prop is not defined', () => {
+    const { container } = render(<Button />);
+    expect(container.querySelector('button')).toHaveClass('main');
+  });
   it('component should have className="main" if variant prop = main', () => {
     const { container } = render(<Button variant="main" />);
     expect(container.querySelector('button')).toHaveClass('main');
@@ -18,6 +22,10 @@ describe('Button Component', () => {
   it('component should have className="bordered" if variant prop = bordered', () => {
     const { container } = render(<Button variant="bordered" />);
     expect(container.querySelector('button')).toHaveClass('bordered');
+  });
+  it('component should have className="danger" if variant prop = danger', () => {
+    const { container } = render(<Button variant="danger" />);
+    expect(container.querySelector('button')).toHaveClass('danger');
   });
   const onClickMock = vi.fn();
   it('should call passed onClick function on each button click', () => {

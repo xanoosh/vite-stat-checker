@@ -12,11 +12,7 @@ export default function PopoverComponent({ name, iv, setIv, ev, setEv }) {
         </button>
       </Popover.Trigger>
       <Popover.Portal>
-        <Popover.Content
-          className="popover-content"
-          sideOffset={3}
-          // alignOffset={2}
-        >
+        <Popover.Content className="popover-content" sideOffset={3}>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
             <div className="popover-heading">
               <h2 className="Text">{name}</h2>

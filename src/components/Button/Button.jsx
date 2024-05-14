@@ -1,12 +1,15 @@
-export default function Button({ text, onClick, variant, disabled = false }) {
+export default function Button({
+  text,
+  onClick,
+  variant = 'main',
+  disabled = false,
+}) {
   return (
     <button
       type="button"
       disabled={disabled}
       onClick={onClick}
-      className={`button-component ${
-        variant === 'bordered' ? 'bordered' : ''
-      } ${variant === 'main' ? 'main' : ''} ${disabled ? 'disabled' : ''}`}
+      className={`button-component ${variant}`}
     >
       {text}
     </button>
