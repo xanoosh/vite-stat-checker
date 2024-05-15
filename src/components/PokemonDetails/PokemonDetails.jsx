@@ -27,12 +27,15 @@ export default function PokemonDetails({ response }) {
 
   // set local storage data on change
   useEffect(() => {
+    console.log('save nature changes');
     localStorage.setItem('nature', nature);
   }, [nature]);
   useEffect(() => {
+    console.log('save level changes');
     localStorage.setItem('level', level);
   }, [level]);
   useEffect(() => {
+    console.log('save stat changes');
     localStorage.setItem('stat-modifiers', JSON.stringify(statModifiers));
   }, [statModifiers]);
   // set stats
@@ -41,6 +44,9 @@ export default function PokemonDetails({ response }) {
     setEffortValues(effortValuesData);
     setStats(statsData);
   }, [response]);
+
+  //check if values are default
+  const valuesDefault = nature === 'Neutral' && Number(level) === 5;
 
   return (
     <div className="poke-info">
@@ -91,6 +97,7 @@ export default function PokemonDetails({ response }) {
         setLevel={setLevel}
       />
       <AlertComponent
+        triggerDisabled={valuesDefault}
         setLevel={setLevel}
         setNature={setNature}
         setStatModifiers={setStatModifiers}

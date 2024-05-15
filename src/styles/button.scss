@@ -1,12 +1,14 @@
+%disabled-btn-styles {
+  opacity: 0.8;
+  background-color: transparent;
+  cursor: not-allowed;
+}
+
 .button-component {
   cursor: pointer;
   border-radius: 0.2rem;
   padding: 0.3rem 1.5rem;
   text-align: center;
-  &.disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-  }
   &:not(.full-width) {
     min-width: 7rem;
   }
@@ -17,6 +19,11 @@
       outline: none;
       box-shadow: 0 0 0 0.2rem $bg-color-light, 0 0 0 0.3rem $primary-color;
     }
+    &.disabled {
+      @extend %disabled-btn-styles;
+      border: 2px solid $primary-color;
+      color: $primary-color;
+    }
   }
   &.danger {
     background-color: $text-color-danger;
@@ -25,6 +32,11 @@
       outline: none;
       box-shadow: 0 0 0 0.2rem $bg-color-light, 0 0 0 0.3rem $text-color-danger;
     }
+    &.disabled {
+      @extend %disabled-btn-styles;
+      border: 2px solid $text-color-danger;
+      color: $text-color-danger;
+    }
   }
   &.success {
     background-color: $text-color-success;
@@ -32,6 +44,11 @@
     &:focus {
       outline: none;
       box-shadow: 0 0 0 0.2rem $bg-color-light, 0 0 0 0.3rem $text-color-success;
+    }
+    &.disabled {
+      @extend %disabled-btn-styles;
+      border: 2px solid $text-color-success;
+      color: $text-color-success;
     }
   }
   &.bordered {

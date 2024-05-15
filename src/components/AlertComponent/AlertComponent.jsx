@@ -5,11 +5,17 @@ export default function AlertComponent({
   setStatModifiers,
   setNature,
   setLevel,
+  triggerDisabled,
 }) {
   return (
     <AlertDialog.Root>
       <AlertDialog.Trigger asChild>
-        <button className="alert-trigger button-component danger full-width">
+        <button
+          disabled={triggerDisabled}
+          className={`alert-trigger button-component danger full-width ${
+            triggerDisabled ? 'disabled' : ''
+          }`}
+        >
           Reset
         </button>
       </AlertDialog.Trigger>

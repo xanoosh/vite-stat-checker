@@ -51,12 +51,12 @@ function StatRow({
       <div className="stat-container">
         <span className="stat-name">{formatStatName(data.name)}</span>
         <div className="stat-badges">
-          {iv === 31 ? null : (
+          {Number(iv) === 31 ? null : (
             <div className="stat-badge down">
               IV <ArrowDownIcon />
             </div>
           )}
-          {ev === 0 ? null : (
+          {Number(ev) === 0 ? null : (
             <div className="stat-badge up">
               EV <ArrowUpIcon />
             </div>
