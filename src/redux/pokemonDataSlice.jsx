@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, current } from '@reduxjs/toolkit';
 
 export const pokemonDataSlice = createSlice({
   name: 'pokemonData',
@@ -19,31 +19,53 @@ export const pokemonDataSlice = createSlice({
         },
   },
   reducers: {
-    changePokemonData: (state, action) => {
-      console.log('reduxxxy');
-      console.log(state.value);
-      console.log(action.payload);
+    resetPokemonData: (state) => {
+      state.value = {
+        statModifiers: {
+          hp: { ev: 0, iv: 31 },
+          attack: { ev: 0, iv: 31 },
+          defense: { ev: 0, iv: 31 },
+          spAttack: { ev: 0, iv: 31 },
+          spDefense: { ev: 0, iv: 31 },
+          speed: { ev: 0, iv: 31 },
+        },
+        nature: 'Neutral',
+        level: 5,
+      };
       localStorage.setItem(
         'modified-pokemon-data',
-        JSON.stringify(action.payload)
+        JSON.stringify(state.value)
       );
-      state.value === action.payload;
+    },
+    changePokemonStatModifiers: (state, action) => {
+      state.value.statModifiers = action.payload;
+      localStorage.setItem(
+        'modified-pokemon-data',
+        JSON.stringify(state.value)
+      );
     },
     changePokemonNature: (state, action) => {
-      console.log('reduxxxy -nature');
-      console.log(state.value);
-      console.log(action.payload);
-      //   localStorage.setItem(
-      //     'modified-pokemon-data',
-      //     JSON.stringify(state.value)
-      //   );
-      state.value.nature === action.payload;
+      state.value.nature = action.payload;
+      localStorage.setItem(
+        'modified-pokemon-data',
+        JSON.stringify(state.value)
+      );
+    },
+    changePokemonLevel: (state, action) => {
+      state.value.level = action.payload;
+      localStorage.setItem(
+        'modified-pokemon-data',
+        JSON.stringify(state.value)
+      );
     },
   },
 });
 
-// Action creators are generated for each case reducer function
-export const { changePokemonData, changePokemonNature } =
-  pokemonDataSlice.actions;
+export const {
+  resetPokemonData,
+  changePokemonStatModifiers,
+  changePokemonNature,
+  changePokemonLevel,
+} = pokemonDataSlice.actions;
 
 export default pokemonDataSlice.reducer;

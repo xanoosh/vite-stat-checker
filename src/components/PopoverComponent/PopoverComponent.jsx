@@ -3,18 +3,17 @@ import { MixerHorizontalIcon, Cross2Icon } from '@radix-ui/react-icons';
 import NumberInput from '../NumberInput/NumberInput';
 import Button from '../Button/Button';
 
-export default function PopoverComponent({
-  name,
-  iv,
-  ev,
-  setModifiedPokemonData,
-}) {
+import { useSelector, useDispatch } from 'react-redux';
+import { changePokemonStatModifiers } from '../../redux/pokemonDataSlice';
+
+export default function PopoverComponent({ name }) {
+  const pokemonDataState = useSelector((state) => state.pokemonData.value);
+  const dispatch = useDispatch();
+  const { iv, ev } = pokemonDataState.statModifiers[name];
   const handleChangeStat = (valueType, value) => {
-    setModifiedPokemonData((prev) => {
-      const newPokemonData = { ...prev };
-      newPokemonData.statModifiers[name][valueType] = value;
-      return newPokemonData;
-    });
+    const newStatModifiers = structuredClone(pokemonDataState.statModifiers);
+    newStatModifiers[name][valueType] = value;
+    dispatch(changePokemonStatModifiers(newStatModifiers));
   };
   const handleChangeEv = (value) => handleChangeStat('ev', value);
   const handleChangeIv = (value) => handleChangeStat('iv', value);

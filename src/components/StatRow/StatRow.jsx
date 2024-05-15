@@ -1,24 +1,34 @@
 import StatRowPopover from '../PopoverComponent/PopoverComponent';
 import { ArrowDownIcon, ArrowUpIcon } from '@radix-ui/react-icons';
 import { calculateStatFormula, getNatureModifier } from '../../utils/functions';
+import { useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
 
-function StatRow({
-  formattedName,
-  data,
-  modifiedPokemonData,
-  setModifiedPokemonData,
-}) {
-  const { statModifiers, nature, level } = modifiedPokemonData;
-  const { ev, iv } = statModifiers[formattedName];
-
-  const statValue = calculateStatFormula(
-    data.name,
-    data.base_stat,
+function StatRow({ formattedName, data }) {
+  const pokemonDataState = useSelector((state) => state.pokemonData.value);
+  const {
     level,
-    iv,
-    ev,
-    nature
+    nature,
+    statModifiers: {
+      [formattedName]: { ev, iv },
+    },
+  } = pokemonDataState;
+
+  const [statValue, setStatValue] = useState(
+    calculateStatFormula(data.name, data.base_stat, level, iv, ev, nature)
   );
+
+  useEffect(() => {
+    const newStatValue = calculateStatFormula(
+      data.name,
+      data.base_stat,
+      level,
+      iv,
+      ev,
+      nature
+    );
+    setStatValue(newStatValue);
+  }, [pokemonDataState]);
 
   const statClassName = (() => {
     const modifier = getNatureModifier(data.name, nature);
@@ -45,12 +55,7 @@ function StatRow({
         </div>
         <span className={statClassName}>{statValue}</span>
       </div>
-      <StatRowPopover
-        name={formattedName}
-        iv={iv}
-        ev={ev}
-        setModifiedPokemonData={setModifiedPokemonData}
-      />
+      <StatRowPopover name={formattedName} />
     </div>
   );
 }

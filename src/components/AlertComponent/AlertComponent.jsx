@@ -1,11 +1,11 @@
 import * as AlertDialog from '@radix-ui/react-alert-dialog';
 import Button from '../Button/Button';
+import { useSelector, useDispatch } from 'react-redux';
+import { resetPokemonData } from '../../redux/pokemonDataSlice';
 
-export default function AlertComponent({
-  modifiedPokemonData,
-  setModifiedPokemonData,
-  defaultPokemonData,
-}) {
+export default function AlertComponent() {
+  const pokemonDataState = useSelector((state) => state.pokemonData.value);
+  const dispatch = useDispatch();
   const isEqualToDefaultPokemonData = (pokemonData) => {
     const { level, nature, statModifiers } = pokemonData;
     let statIsDefault = true;
@@ -20,7 +20,7 @@ export default function AlertComponent({
     return levelIsDefault && natureIsDefault && statIsDefault;
   };
 
-  const valueIsDefault = isEqualToDefaultPokemonData(modifiedPokemonData);
+  const valueIsDefault = isEqualToDefaultPokemonData(pokemonDataState);
 
   return (
     <AlertDialog.Root>
@@ -52,7 +52,7 @@ export default function AlertComponent({
               <Button
                 variant="danger"
                 text="Proceed"
-                onClick={() => setModifiedPokemonData(defaultPokemonData)}
+                onClick={() => dispatch(resetPokemonData())}
               />
             </AlertDialog.Action>
           </div>
