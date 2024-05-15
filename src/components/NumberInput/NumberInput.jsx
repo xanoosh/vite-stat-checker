@@ -15,13 +15,13 @@ export default function NumberInput({
   const handleClick = (variant) => {
     if (variant === 'decrement' && value === min) {
       return;
-    }
-    if (variant === 'increment' && value === max) {
+    } else if (variant === 'increment' && value === max) {
       return;
+    } else if (variant === 'decrement') {
+      setValue(value - 1);
+    } else if (variant === 'increment') {
+      setValue(value + 1);
     }
-    setValue((prev) =>
-      variant === 'decrement' ? Number(prev) - 1 : Number(prev) + 1
-    );
   };
 
   return (

@@ -6,47 +6,42 @@ import PokemonForm from './PokemonForm';
 import AlertComponent from '../AlertComponent/AlertComponent';
 
 export default function PokemonDetails({ response }) {
+  const defaultPokemonData = {
+    statModifiers: {
+      hp: { ev: 0, iv: 31 },
+      attack: { ev: 0, iv: 31 },
+      defense: { ev: 0, iv: 31 },
+      spAttack: { ev: 0, iv: 31 },
+      spDefense: { ev: 0, iv: 31 },
+      speed: { ev: 0, iv: 31 },
+    },
+    nature: 'Neutral',
+    level: 5,
+  };
+
   const [effortValues, setEffortValues] = useState([]);
   const [stats, setStats] = useState(null);
-  const [nature, setNature] = useState(
-    localStorage.getItem('nature') || 'Neutral'
-  );
-  const [level, setLevel] = useState(localStorage.getItem('level') || 5);
-  const [statModifiers, setStatModifiers] = useState(
-    localStorage.getItem('stat-modifiers')
-      ? JSON.parse(localStorage.getItem('stat-modifiers'))
-      : {
-          hp: { ev: 0, iv: 31 },
-          attack: { ev: 0, iv: 31 },
-          defense: { ev: 0, iv: 31 },
-          spAttack: { ev: 0, iv: 31 },
-          spDefense: { ev: 0, iv: 31 },
-          speed: { ev: 0, iv: 31 },
-        }
+
+  const [modifiedPokemonData, setModifiedPokemonData] = useState(
+    localStorage.getItem('modified-pokemon-data')
+      ? JSON.parse(localStorage.getItem('modified-pokemon-data'))
+      : defaultPokemonData
   );
 
   // set local storage data on change
   useEffect(() => {
-    console.log('save nature changes');
-    localStorage.setItem('nature', nature);
-  }, [nature]);
-  useEffect(() => {
-    console.log('save level changes');
-    localStorage.setItem('level', level);
-  }, [level]);
-  useEffect(() => {
-    console.log('save stat changes');
-    localStorage.setItem('stat-modifiers', JSON.stringify(statModifiers));
-  }, [statModifiers]);
+    localStorage.setItem(
+      'modified-pokemon-data',
+      JSON.stringify(modifiedPokemonData)
+    );
+  }, [modifiedPokemonData]);
+
   // set stats
   useEffect(() => {
     const { effortValuesData, statsData } = getStatAndEvData(response);
     setEffortValues(effortValuesData);
     setStats(statsData);
   }, [response]);
-
-  //check if values are default
-  const valuesDefault = nature === 'Neutral' && Number(level) === 5;
 
   return (
     <div className="poke-info">
@@ -85,22 +80,18 @@ export default function PokemonDetails({ response }) {
       </div>
       <PokemonStats
         stats={stats}
-        statModifiers={statModifiers}
-        setStatModifiers={setStatModifiers}
-        level={level}
-        nature={nature}
+        modifiedPokemonData={modifiedPokemonData}
+        setModifiedPokemonData={setModifiedPokemonData}
       />
       <PokemonForm
-        nature={nature}
-        setNature={setNature}
-        level={level}
-        setLevel={setLevel}
+        nature={modifiedPokemonData.nature}
+        level={modifiedPokemonData.level}
+        setModifiedPokemonData={setModifiedPokemonData}
       />
       <AlertComponent
-        triggerDisabled={valuesDefault}
-        setLevel={setLevel}
-        setNature={setNature}
-        setStatModifiers={setStatModifiers}
+        modifiedPokemonData={modifiedPokemonData}
+        setModifiedPokemonData={setModifiedPokemonData}
+        defaultPokemonData={defaultPokemonData}
       />
     </div>
   );

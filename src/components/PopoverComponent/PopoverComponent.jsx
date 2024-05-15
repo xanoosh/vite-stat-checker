@@ -3,7 +3,21 @@ import { MixerHorizontalIcon, Cross2Icon } from '@radix-ui/react-icons';
 import NumberInput from '../NumberInput/NumberInput';
 import Button from '../Button/Button';
 
-export default function PopoverComponent({ name, iv, setIv, ev, setEv }) {
+export default function PopoverComponent({
+  name,
+  iv,
+  ev,
+  setModifiedPokemonData,
+}) {
+  const handleChangeStat = (valueType, value) => {
+    setModifiedPokemonData((prev) => {
+      const newPokemonData = { ...prev };
+      newPokemonData.statModifiers[name][valueType] = value;
+      return newPokemonData;
+    });
+  };
+  const handleChangeEv = (value) => handleChangeStat('ev', value);
+  const handleChangeIv = (value) => handleChangeStat('iv', value);
   return (
     <Popover.Root>
       <Popover.Trigger asChild>
@@ -23,8 +37,8 @@ export default function PopoverComponent({ name, iv, setIv, ev, setEv }) {
             <NumberInput
               id="evs"
               label="Effort Values:"
-              value={ev}
-              setValue={setEv}
+              value={Number(ev)}
+              setValue={handleChangeEv}
               min={0}
               max={252}
               background="dark"
@@ -34,20 +48,20 @@ export default function PopoverComponent({ name, iv, setIv, ev, setEv }) {
                 variant="main"
                 disabled={Number(ev) === 0}
                 text={`min Ev's`}
-                onClick={() => setEv(0)}
+                onClick={() => handleChangeEv(0)}
               />
               <Button
                 variant="main"
                 disabled={Number(ev) === 252}
                 text={`max Ev's`}
-                onClick={() => setEv(252)}
+                onClick={() => handleChangeEv(252)}
               />
             </div>
             <NumberInput
               id="ivs"
               label="Individual Values:"
-              value={iv}
-              setValue={setIv}
+              value={Number(iv)}
+              setValue={handleChangeIv}
               min={0}
               max={31}
               background="dark"
@@ -57,13 +71,13 @@ export default function PopoverComponent({ name, iv, setIv, ev, setEv }) {
                 variant="main"
                 disabled={Number(iv) === 0}
                 text={`min Iv's`}
-                onClick={() => setIv(0)}
+                onClick={() => handleChangeIv(0)}
               />
               <Button
                 variant="main"
                 disabled={Number(iv) === 31}
                 text={`max Iv's`}
-                onClick={() => setIv(31)}
+                onClick={() => handleChangeIv(31)}
               />
             </div>
           </div>

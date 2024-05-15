@@ -2,18 +2,33 @@ import * as AlertDialog from '@radix-ui/react-alert-dialog';
 import Button from '../Button/Button';
 
 export default function AlertComponent({
-  setStatModifiers,
-  setNature,
-  setLevel,
-  triggerDisabled,
+  modifiedPokemonData,
+  setModifiedPokemonData,
+  defaultPokemonData,
 }) {
+  const isEqualToDefaultPokemonData = (pokemonData) => {
+    const { level, nature, statModifiers } = pokemonData;
+    let statIsDefault = true;
+    const levelIsDefault = level === 5;
+    const natureIsDefault = nature === 'Neutral';
+    Object.keys(statModifiers).forEach((el) => {
+      if (statIsDefault) {
+        statIsDefault =
+          statModifiers[el].ev === 0 && statModifiers[el].iv === 31;
+      }
+    });
+    return levelIsDefault && natureIsDefault && statIsDefault;
+  };
+
+  const valueIsDefault = isEqualToDefaultPokemonData(modifiedPokemonData);
+
   return (
     <AlertDialog.Root>
       <AlertDialog.Trigger asChild>
         <button
-          disabled={triggerDisabled}
+          disabled={valueIsDefault}
           className={`alert-trigger button-component danger full-width ${
-            triggerDisabled ? 'disabled' : ''
+            valueIsDefault ? 'disabled' : ''
           }`}
         >
           Reset
@@ -37,18 +52,7 @@ export default function AlertComponent({
               <Button
                 variant="danger"
                 text="Proceed"
-                onClick={() => {
-                  setStatModifiers({
-                    hp: { ev: 0, iv: 31 },
-                    attack: { ev: 0, iv: 31 },
-                    defense: { ev: 0, iv: 31 },
-                    spAttack: { ev: 0, iv: 31 },
-                    spDefense: { ev: 0, iv: 31 },
-                    speed: { ev: 0, iv: 31 },
-                  });
-                  setNature('Neutral');
-                  setLevel(5);
-                }}
+                onClick={() => setModifiedPokemonData(defaultPokemonData)}
               />
             </AlertDialog.Action>
           </div>

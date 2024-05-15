@@ -1,9 +1,18 @@
 import { naturesList } from '../../data';
 import NumberInput from '../NumberInput/NumberInput';
 import SelectComponent from '../SelectComponent/SelectComponent';
-import Button from '../Button/Button';
 
-export default function PokemonForm({ level, setLevel, nature, setNature }) {
+export default function PokemonForm({ level, nature, setModifiedPokemonData }) {
+  const handleChangeValue = (valueType, value) => {
+    setModifiedPokemonData((prev) => {
+      const newPokemonData = { ...prev };
+      newPokemonData[valueType] = value;
+      return newPokemonData;
+    });
+  };
+  const handleChangeLevel = (value) => handleChangeValue('level', value);
+  const handleChangeNature = (value) => handleChangeValue('nature', value);
+
   return (
     <div className="pokemon-form">
       <NumberInput
@@ -11,7 +20,7 @@ export default function PokemonForm({ level, setLevel, nature, setNature }) {
         id="level"
         label="Level:"
         value={Number(level)}
-        setValue={setLevel}
+        setValue={handleChangeLevel}
         labelPosition="top"
       />
       <SelectComponent
@@ -20,7 +29,7 @@ export default function PokemonForm({ level, setLevel, nature, setNature }) {
         label="Nature:"
         items={naturesList}
         value={nature}
-        onValueChange={setNature}
+        onValueChange={handleChangeNature}
       />
     </div>
   );
