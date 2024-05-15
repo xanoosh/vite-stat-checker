@@ -2,7 +2,13 @@ import { naturesList } from '../../data';
 import NumberInput from '../NumberInput/NumberInput';
 import SelectComponent from '../SelectComponent/SelectComponent';
 
+import { useSelector, useDispatch } from 'react-redux';
+import { changePokemonNature } from '../../redux/pokemonDataSlice';
+
 export default function PokemonForm({ level, nature, setModifiedPokemonData }) {
+  const pokemonData = useSelector((state) => state.pokemonData.value);
+  const dispatch = useDispatch();
+
   const handleChangeValue = (valueType, value) => {
     setModifiedPokemonData((prev) => {
       const newPokemonData = { ...prev };
@@ -12,6 +18,7 @@ export default function PokemonForm({ level, nature, setModifiedPokemonData }) {
   };
   const handleChangeLevel = (value) => handleChangeValue('level', value);
   const handleChangeNature = (value) => handleChangeValue('nature', value);
+  // const handleChangeNature = (value) => dispatch(changePokemonNature(value));
 
   return (
     <div className="pokemon-form">
