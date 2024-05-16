@@ -1,4 +1,4 @@
-import { createSlice, current } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 
 export const pokemonDataSlice = createSlice({
   name: 'pokemonData',
@@ -32,31 +32,15 @@ export const pokemonDataSlice = createSlice({
         nature: 'Neutral',
         level: 5,
       };
-      localStorage.setItem(
-        'modified-pokemon-data',
-        JSON.stringify(state.value)
-      );
     },
     changePokemonStatModifiers: (state, action) => {
       state.value.statModifiers = action.payload;
-      localStorage.setItem(
-        'modified-pokemon-data',
-        JSON.stringify(state.value)
-      );
     },
     changePokemonNature: (state, action) => {
       state.value.nature = action.payload;
-      localStorage.setItem(
-        'modified-pokemon-data',
-        JSON.stringify(state.value)
-      );
     },
     changePokemonLevel: (state, action) => {
       state.value.level = action.payload;
-      localStorage.setItem(
-        'modified-pokemon-data',
-        JSON.stringify(state.value)
-      );
     },
   },
 });
