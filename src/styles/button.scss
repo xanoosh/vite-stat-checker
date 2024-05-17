@@ -1,5 +1,4 @@
 %disabled-btn-styles {
-  opacity: 0.8;
   background-color: transparent;
   cursor: not-allowed;
 }
@@ -19,7 +18,7 @@
       outline: none;
       box-shadow: 0 0 0 0.2rem $bg-color-light, 0 0 0 0.3rem $primary-color;
     }
-    &.disabled {
+    &:disabled {
       @extend %disabled-btn-styles;
       border: 2px solid $primary-color;
       color: $primary-color;
@@ -32,7 +31,7 @@
       outline: none;
       box-shadow: 0 0 0 0.2rem $bg-color-light, 0 0 0 0.3rem $text-color-danger;
     }
-    &.disabled {
+    &:disabled {
       @extend %disabled-btn-styles;
       border: 2px solid $text-color-danger;
       color: $text-color-danger;
@@ -45,7 +44,7 @@
       outline: none;
       box-shadow: 0 0 0 0.2rem $bg-color-light, 0 0 0 0.3rem $text-color-success;
     }
-    &.disabled {
+    &:disabled {
       @extend %disabled-btn-styles;
       border: 2px solid $text-color-success;
       color: $text-color-success;

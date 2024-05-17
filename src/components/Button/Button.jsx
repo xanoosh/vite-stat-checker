@@ -10,9 +10,7 @@ export default function Button({
       type="button"
       disabled={disabled}
       onClick={onClick}
-      className={`button-component ${variant} ${disabled ? 'disabled' : ''} ${
-        fullWidth ? 'full-width' : ''
-      }`}
+      className={`button-component ${variant} ${fullWidth ? 'full-width' : ''}`}
     >
       {text}
     </button>

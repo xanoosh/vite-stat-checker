@@ -26,7 +26,7 @@ export default function PopoverComponent({ name }) {
       </Popover.Trigger>
       <Popover.Portal>
         <Popover.Content className="popover-content" sideOffset={3}>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
             <div className="popover-heading">
               <h2 className="Text">{name}</h2>
               <Popover.Close className="popover-close" aria-label="Close">
