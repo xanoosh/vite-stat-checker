@@ -43,26 +43,32 @@ describe('SelectComponent', () => {
     const triggerButton = screen.getByRole('combobox');
     expect(triggerButton).toHaveAttribute('aria-expanded', 'false');
   });
-  //   it('trigger button should have attribute "aria-expanded=true" when clicked', async () => {
-  //     render(<SelectComponent items={['item']} value="item" />);
-  //     const triggerButton = screen.getByRole('combobox');
+  it('trigger button should have attribute "aria-expanded=true" when clicked', async () => {
+    render(<SelectComponent items={['item']} value="item" />);
+    const triggerButton = screen.getByRole('combobox');
 
-  //     await waitFor(() => fireEvent.click(triggerButton));
-  //     await waitFor(() =>
-  //       expect(triggerButton).toHaveAttribute('aria-expanded', 'true')
-  //     );
-  //   });
+    await waitFor(() => fireEvent.click(triggerButton));
+    await waitFor(() =>
+      expect(triggerButton).toHaveAttribute('aria-expanded', 'true')
+    );
+  });
 
-  //   const onValueChangeMock = vi.fn();
-  //   it('should call passed setValue function on each button click & input change', () => {
-  //     const { container } = render(
-  //       <SelectComponent
-  //         items={['item']}
-  //         value="item"
-  //         onValueChange={onValueChangeMock}
-  //       />
-  //     );
-  //     fireEvent.click(container.querySelector('button.select-trigger'));
-  //     expect(setValueMock).toHaveBeenCalledTimes(1);
-  //   });
+  const onValueChangeMock = vi.fn();
+  it('should call passed setValue function on each button click & input change', async () => {
+    const { container } = render(
+      <div>
+        <SelectComponent
+          items={['item']}
+          value="item"
+          onValueChange={onValueChangeMock}
+        />
+      </div>
+    );
+    const triggerButton = screen.getByRole('combobox');
+    await waitFor(() => fireEvent.click(triggerButton));
+    await waitFor(() =>
+      fireEvent.click(container.querySelector('.select-item:first-of-type'))
+    );
+    expect(onValueChangeMock).toHaveBeenCalledTimes(1);
+  });
 });
