@@ -11,6 +11,9 @@
 
   .stat-container {
     width: 70%;
+    &.hide-popover {
+      width: 100%;
+    }
     display: grid;
     grid-template-columns: 3fr 3fr 1fr;
     .stat-badges {

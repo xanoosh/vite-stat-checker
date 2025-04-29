@@ -21,7 +21,6 @@ function SearchColumn({ loading, setId }) {
 
   return (
     <div className="search-column">
-      <h1>Stat checker</h1>
       <SearchInput handleSearch={handleFuseSearch} loading={loading} />
       <SearchResults searchResults={searchResults} setId={setId} />
     </div>

@@ -1,7 +1,7 @@
 import StatRow from '../StatRow/StatRow';
 import { formatStatName } from '../../utils/functions';
 
-export default function PokemonStats({ stats }) {
+export default function PokemonStats({ stats, simplifiedView }) {
   return (
     stats?.length && (
       <>
@@ -10,6 +10,7 @@ export default function PokemonStats({ stats }) {
             key={el.base_stat + el.name}
             formattedName={formatStatName(el.name)}
             data={el}
+            hidePopover={simplifiedView}
           />
         ))}
       </>
