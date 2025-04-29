@@ -9,9 +9,9 @@ export default function SearchPokemonPage() {
     id: requestId,
   });
   return (
-    <div className="container">
+    <section className="search-pokemon-container">
       <SearchColumn loading={isLoading} setId={setRequestId} />
       <ResponseColumn response={data} />
-    </div>
+    </section>
   );
 }
