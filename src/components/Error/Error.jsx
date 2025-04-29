@@ -1,6 +1,6 @@
 export default function Error() {
   return (
-    <div>
+    <div className="error">
       <p>An unexpected error has occured</p>
     </div>
   );
