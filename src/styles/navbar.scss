@@ -15,10 +15,10 @@
       width: 1rem;
     }
     &:hover {
-      background-color: $bg-color-light;
+      background-color: $text-color-muted;
     }
     &.active {
-      background-color: $text-color-muted;
+      background-color: $bg-color-light;
     }
   }
 }

@@ -1,6 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
-import { scrollIntoResult } from '../utils/functions';
 
 const getPokemonDataQuery = (id) => ({
   queryKey: ['pokemon-data', id],
@@ -18,7 +17,6 @@ async function getPokemonData(id) {
       throw new Error('Failed to fetch pokemon data');
     }
     const pokemonData = await response.json();
-    scrollIntoResult();
     return pokemonData;
   } catch (error) {
     toast.error(error.message);
