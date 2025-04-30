@@ -31,3 +31,20 @@
     width: calc(50% - 0.5rem);
   }
 }
+
+//simplified variant 4 compare stats page
+.search-column.simplified {
+  position: relative;
+  .search-input-container {
+    .search-input {
+      padding: 0.5rem;
+    }
+  }
+  .search-results {
+    position: fixed;
+    z-index: 1;
+    background-color: $bg-color;
+    height: auto;
+    top: 6.6rem;
+  }
+}

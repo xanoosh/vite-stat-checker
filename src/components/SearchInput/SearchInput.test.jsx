@@ -28,11 +28,11 @@ describe('SearchInput Component', () => {
     });
     expect(container.querySelector('input')).toHaveValue('test-value');
   });
-  it('should have placeholder equal to "type name here" if no placeholder prop is passed', () => {
+  it('should have placeholder equal to "Search by name" if no placeholder prop is passed', () => {
     const { container } = render(<SearchInput />);
     expect(container.querySelector('input')).toHaveAttribute(
       'placeholder',
-      'type name here'
+      'Search by name'
     );
   });
   it('should have placeholder equal to placeholder prop', () => {

@@ -12,11 +12,11 @@ export default function CompareStatsPage() {
   return (
     <section className="compare-stats-container">
       <div>
-        <SearchColumn loading={isLoading} setId={setRequestId} />
+        <SearchColumn loading={isLoading} setId={setRequestId} simplifiedView />
         {data ? <PokemonDetails response={data} simplifiedView /> : null}
       </div>
       <div>
-        <SearchColumn loading={isLoading} setId={setRequestId} />
+        <SearchColumn loading={isLoading} setId={setRequestId} simplifiedView />
         {data ? <PokemonDetails response={data} simplifiedView /> : null}
       </div>
     </section>

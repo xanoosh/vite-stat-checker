@@ -3,7 +3,7 @@ import Loader from '../Loader/Loader';
 export default function SearchInput({
   loading,
   handleSearch,
-  placeholder = 'type name here',
+  placeholder = 'Search by name',
 }) {
   return (
     <div className="search-input-container">

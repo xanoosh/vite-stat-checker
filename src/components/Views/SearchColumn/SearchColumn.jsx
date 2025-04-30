@@ -12,7 +12,7 @@ const fuse = new Fuse(pokemonArray, {
 import SearchInput from '../../SearchInput/SearchInput';
 import SearchResults from '../../SearchResults/SearchResults';
 
-function SearchColumn({ loading, setId }) {
+function SearchColumn({ loading, setId, simplifiedView = false }) {
   const [searchResults, setSearchResults] = useState([]);
   function handleFuseSearch(searchVal) {
     const results = fuse.search(searchVal, { limit: 12 });
@@ -20,7 +20,7 @@ function SearchColumn({ loading, setId }) {
   }
 
   return (
-    <div className="search-column">
+    <div className={`search-column ${simplifiedView ? 'simplified' : ''}`}>
       <SearchInput handleSearch={handleFuseSearch} loading={loading} />
       <SearchResults searchResults={searchResults} setId={setId} />
     </div>
