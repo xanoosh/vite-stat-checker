@@ -5,10 +5,13 @@ export default function SearchResults({
   setId,
   empty = 'Type name above to see results.',
   simplifiedView,
+  handleClearValue,
 }) {
   return (
     <div
-      className={`search-results ${searchResults.length > 0 ? '' : 'inactive'}`}
+      className={`search-results ${
+        simplifiedView && searchResults.length > 0 ? '' : 'inactive'
+      }`}
     >
       {searchResults && searchResults.length > 0 ? (
         searchResults.map((searchResult) => (
@@ -17,7 +20,12 @@ export default function SearchResults({
               variant="bordered"
               fullWidth
               text={searchResult.item.name}
-              onClick={() => setId(searchResult.item.id)}
+              onClick={() => {
+                setId(searchResult.item.id);
+                if (simplifiedView) {
+                  handleClearValue();
+                }
+              }}
             />
           </div>
         ))

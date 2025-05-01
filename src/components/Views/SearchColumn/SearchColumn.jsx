@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 //search data
 import { pokemonArray } from '../../../data';
 //search plugin
@@ -13,19 +13,32 @@ import SearchInput from '../../SearchInput/SearchInput';
 import SearchResults from '../../SearchResults/SearchResults';
 
 function SearchColumn({ loading, setId, simplifiedView = false }) {
+  const [searchValue, setSearchValue] = useState('');
   const [searchResults, setSearchResults] = useState([]);
-  function handleFuseSearch(searchVal) {
-    const results = fuse.search(searchVal, { limit: 12 });
-    setSearchResults(results);
-  }
+
+  //fuse search on input change
+  useEffect(() => {
+    if (searchValue.length > 0) {
+      const results = fuse.search(searchValue, { limit: 12 });
+      setSearchResults(results);
+    }
+  }, [searchValue]);
 
   return (
     <div className={`search-column ${simplifiedView ? 'simplified' : ''}`}>
-      <SearchInput handleSearch={handleFuseSearch} loading={loading} />
+      <SearchInput
+        loading={loading}
+        value={searchValue}
+        setValue={setSearchValue}
+      />
       <SearchResults
         searchResults={searchResults}
         setId={setId}
         simplifiedView={simplifiedView}
+        handleClearValue={() => {
+          setSearchValue('');
+          setSearchResults([]);
+        }}
       />
     </div>
   );

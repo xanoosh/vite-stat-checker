@@ -2,8 +2,9 @@ import Loader from '../Loader/Loader';
 
 export default function SearchInput({
   loading,
-  handleSearch,
   placeholder = 'Search by name',
+  value,
+  setValue,
 }) {
   return (
     <div className="search-input-container">
@@ -11,7 +12,10 @@ export default function SearchInput({
         className="search-input"
         placeholder={placeholder}
         type="text"
-        onChange={(e) => (handleSearch ? handleSearch(e.target.value) : null)}
+        value={value}
+        onChange={(e) => {
+          setValue(e.target.value);
+        }}
       />
       <Loader loading={loading} />
     </div>
