@@ -1,4 +1,4 @@
-.response-column {
+.poke-info {
   //base info
   .title-section {
     padding-bottom: 1rem;
@@ -81,6 +81,18 @@
     gap: 0.7rem;
     .button-component {
       margin-top: 1.5rem;
+    }
+  }
+
+  //simplified adjustments
+  &.simplified {
+    padding: 0 0.3rem;
+    margin-top: 1rem;
+    .title-section h2 {
+      font-size: 1.3rem;
+      .id {
+        font-size: 1rem;
+      }
     }
   }
 }

@@ -17,7 +17,7 @@ export default function PokemonDetails({ response, simplifiedView = false }) {
   }, [response]);
 
   return (
-    <div className="poke-info">
+    <div className={`poke-info ${simplifiedView ? 'simplified' : ''}`}>
       <div className="title-section">
         <h2>
           <span>{response.name}</span>
