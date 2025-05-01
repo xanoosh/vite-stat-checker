@@ -5,19 +5,39 @@ import SearchColumn from '../components/Views/SearchColumn/SearchColumn';
 import PokemonDetails from '../components/PokemonDetails/PokemonDetails';
 
 export default function CompareStatsPage() {
-  const [requestId, setRequestId] = useState(null);
-  const { data, isLoading } = usePokemonData({
-    id: requestId,
-  });
+  const [requestIdColumnOne, setRequestIdColumnOne] = useState(null);
+  const [requestIdColumnTwo, setRequestIdColumnTwo] = useState(null);
+  const { data: dataColumnOne, isLoading: isLoadingColumnOne } = usePokemonData(
+    {
+      id: requestIdColumnOne,
+    }
+  );
+  const { data: dataColumnTwo, isLoading: isLoadingColumnTwo } = usePokemonData(
+    {
+      id: requestIdColumnTwo,
+    }
+  );
   return (
     <section className="compare-stats-container">
       <div>
-        <SearchColumn loading={isLoading} setId={setRequestId} simplifiedView />
-        {data ? <PokemonDetails response={data} simplifiedView /> : null}
+        <SearchColumn
+          loading={isLoadingColumnOne}
+          setId={setRequestIdColumnOne}
+          simplifiedView
+        />
+        {dataColumnOne ? (
+          <PokemonDetails response={dataColumnOne} simplifiedView />
+        ) : null}
       </div>
       <div>
-        <SearchColumn loading={isLoading} setId={setRequestId} simplifiedView />
-        {data ? <PokemonDetails response={data} simplifiedView /> : null}
+        <SearchColumn
+          loading={isLoadingColumnTwo}
+          setId={setRequestIdColumnTwo}
+          simplifiedView
+        />
+        {dataColumnTwo ? (
+          <PokemonDetails response={dataColumnTwo} simplifiedView />
+        ) : null}
       </div>
     </section>
   );
