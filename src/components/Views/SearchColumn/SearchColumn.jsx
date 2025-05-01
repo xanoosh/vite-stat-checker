@@ -22,7 +22,11 @@ function SearchColumn({ loading, setId, simplifiedView = false }) {
   return (
     <div className={`search-column ${simplifiedView ? 'simplified' : ''}`}>
       <SearchInput handleSearch={handleFuseSearch} loading={loading} />
-      <SearchResults searchResults={searchResults} setId={setId} />
+      <SearchResults
+        searchResults={searchResults}
+        setId={setId}
+        simplifiedView={simplifiedView}
+      />
     </div>
   );
 }

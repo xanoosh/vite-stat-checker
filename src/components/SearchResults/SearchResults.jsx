@@ -4,9 +4,12 @@ export default function SearchResults({
   searchResults,
   setId,
   empty = 'Type name above to see results.',
+  simplifiedView,
 }) {
   return (
-    <div className="search-results">
+    <div
+      className={`search-results ${searchResults.length > 0 ? '' : 'inactive'}`}
+    >
       {searchResults && searchResults.length > 0 ? (
         searchResults.map((searchResult) => (
           <div key={searchResult.item.id} className="search-results-column">
@@ -18,7 +21,7 @@ export default function SearchResults({
             />
           </div>
         ))
-      ) : (
+      ) : simplifiedView ? null : (
         <p className="muted">{empty}</p>
       )}
     </div>
