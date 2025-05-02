@@ -21,7 +21,7 @@ export default function PokemonDetails({ response, simplifiedView = false }) {
       <div className="title-section">
         <h2>
           <span>{response.name}</span>
-          <span className="id">#{response.id}</span>
+          {simplifiedView ? null : <span className="id">#{response.id}</span>}
         </h2>
       </div>
       {simplifiedView ? null : (

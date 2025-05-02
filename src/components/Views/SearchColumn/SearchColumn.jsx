@@ -19,7 +19,9 @@ function SearchColumn({ loading, setId, simplifiedView = false }) {
   //fuse search on input change
   useEffect(() => {
     if (searchValue.length > 0) {
-      const results = fuse.search(searchValue, { limit: 12 });
+      const results = fuse.search(searchValue, {
+        limit: simplifiedView ? 6 : 12,
+      });
       setSearchResults(results);
     }
   }, [searchValue]);

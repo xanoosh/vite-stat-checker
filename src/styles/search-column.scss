@@ -50,11 +50,9 @@
     padding: 0.3rem;
     background-color: $bg-color;
     height: auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
     gap: 0.5rem;
     .search-results-column {
-      width: auto;
+      width: 100%;
       background-color: $bg-color;
     }
   }
