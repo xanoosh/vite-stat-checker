@@ -14,7 +14,7 @@ export default function NavBar({ navigationArray }) {
           }
         >
           <img src={imgpath} alt="Logo" className="nav-logo" />
-          {element.name}
+          <span>{element.name}</span>
         </NavLink>
       ))}
     </nav>
