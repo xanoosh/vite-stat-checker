@@ -3,6 +3,8 @@ import { usePokemonData } from '../hooks/usePokemonData';
 import SearchColumn from '../components/Views/SearchColumn/SearchColumn';
 // import ResponseColumn from '../components/Views/ResponseColumn/ResponseColumn';
 import PokemonDetails from '../components/PokemonDetails/PokemonDetails';
+import PokemonForm from '../components/PokemonDetails/PokemonForm';
+import AlertComponent from '../components/AlertComponent/AlertComponent';
 
 export default function CompareStatsPage() {
   const [requestIdColumnOne, setRequestIdColumnOne] = useState(null);
@@ -38,6 +40,10 @@ export default function CompareStatsPage() {
         {dataColumnTwo ? (
           <PokemonDetails response={dataColumnTwo} simplifiedView />
         ) : null}
+      </div>
+      <div className="compare-page-form">
+        <PokemonForm />
+        <AlertComponent />
       </div>
     </section>
   );

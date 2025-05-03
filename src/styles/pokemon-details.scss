@@ -96,3 +96,17 @@
     }
   }
 }
+
+.compare-page-form {
+  grid-column: 1 / -1;
+  display: grid;
+  .pokemon-form {
+    margin-top: 1rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.7rem;
+    .button-component {
+      margin-top: 1.5rem;
+    }
+  }
+}
