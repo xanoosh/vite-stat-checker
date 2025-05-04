@@ -1,6 +1,8 @@
 .search-input-container {
   display: flex;
   position: relative;
+  padding: 0 0.3rem;
+
   .search-input {
     width: 100%;
     padding: 0.75rem;
@@ -35,9 +37,9 @@
 //simplified variant 4 compare stats page
 .search-column.simplified {
   position: relative;
-  .search-input-container {
-    padding: 0 0.3rem;
-  }
+  // .search-input-container {
+  //   padding: 0 0.3rem;
+  // }
   .search-results {
     &.inactive {
       display: none;

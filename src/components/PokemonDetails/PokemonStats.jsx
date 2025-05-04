@@ -10,7 +10,7 @@ export default function PokemonStats({ stats, simplifiedView }) {
             key={el.base_stat + el.name}
             formattedName={formatStatName(el.name)}
             data={el}
-            hidePopover={simplifiedView}
+            simplifiedView={simplifiedView}
           />
         ))}
       </>
