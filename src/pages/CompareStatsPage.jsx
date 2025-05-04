@@ -1,44 +1,39 @@
-import { useState } from 'react';
-import { usePokemonData } from '../hooks/usePokemonData';
+import { useContext } from 'react';
+import { AppContext } from '../App';
 import SearchColumn from '../components/Views/SearchColumn/SearchColumn';
-// import ResponseColumn from '../components/Views/ResponseColumn/ResponseColumn';
 import PokemonDetails from '../components/PokemonDetails/PokemonDetails';
 import PokemonForm from '../components/PokemonDetails/PokemonForm';
 import AlertComponent from '../components/AlertComponent/AlertComponent';
 
 export default function CompareStatsPage() {
-  const [requestIdColumnOne, setRequestIdColumnOne] = useState(null);
-  const [requestIdColumnTwo, setRequestIdColumnTwo] = useState(null);
-  const { data: dataColumnOne, isLoading: isLoadingColumnOne } = usePokemonData(
-    {
-      id: requestIdColumnOne,
-    }
-  );
-  const { data: dataColumnTwo, isLoading: isLoadingColumnTwo } = usePokemonData(
-    {
-      id: requestIdColumnTwo,
-    }
-  );
+  const {
+    setCompareIdColumnOne,
+    compareColumnOneData,
+    isLoadingCompareColumnOne,
+    setCompareIdColumnTwo,
+    compareColumnTwoData,
+    isLoadingCompareColumnTwo,
+  } = useContext(AppContext);
   return (
     <section className="compare-stats-container">
       <div>
         <SearchColumn
-          loading={isLoadingColumnOne}
-          setId={setRequestIdColumnOne}
+          loading={isLoadingCompareColumnOne}
+          setId={setCompareIdColumnOne}
           simplifiedView
         />
-        {dataColumnOne ? (
-          <PokemonDetails response={dataColumnOne} simplifiedView />
+        {compareColumnOneData ? (
+          <PokemonDetails response={compareColumnOneData} simplifiedView />
         ) : null}
       </div>
       <div>
         <SearchColumn
-          loading={isLoadingColumnTwo}
-          setId={setRequestIdColumnTwo}
+          loading={isLoadingCompareColumnTwo}
+          setId={setCompareIdColumnTwo}
           simplifiedView
         />
-        {dataColumnTwo ? (
-          <PokemonDetails response={dataColumnTwo} simplifiedView />
+        {compareColumnTwoData ? (
+          <PokemonDetails response={compareColumnTwoData} simplifiedView />
         ) : null}
       </div>
       <div className="compare-page-form">
