@@ -4,7 +4,7 @@ import { calculateStatFormula, getNatureModifier } from '../../utils/functions';
 import { useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 
-function StatRow({ formattedName, data, hidePopover }) {
+function StatRow({ formattedName, data, simplifiedView }) {
   const pokemonDataState = useSelector((state) => state.pokemonData.value);
   const {
     level,
@@ -39,7 +39,9 @@ function StatRow({ formattedName, data, hidePopover }) {
 
   return (
     <div className="stat-row">
-      <div className={`stat-container ${hidePopover ? 'hide-popover' : ''}`}>
+      <div
+        className={`stat-container ${simplifiedView ? 'simplified-view' : ''}`}
+      >
         <span className="stat-name">{formattedName}</span>
         <div className="stat-badges">
           {Number(iv) === 31 ? null : (
@@ -55,7 +57,7 @@ function StatRow({ formattedName, data, hidePopover }) {
         </div>
         <span className={statClassName}>{statValue}</span>
       </div>
-      {hidePopover ? null : <StatRowPopover name={formattedName} />}
+      {simplifiedView ? null : <StatRowPopover name={formattedName} />}
     </div>
   );
 }
