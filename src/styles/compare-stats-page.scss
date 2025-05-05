@@ -15,7 +15,7 @@
   display: flex;
   flex-direction: column;
   .equation-element {
-    height: 2.3rem;
+    height: 2.4rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -27,6 +27,7 @@
     }
   }
   &.inactive {
+    margin-top: 0;
     .equation-element {
       display: none;
     }

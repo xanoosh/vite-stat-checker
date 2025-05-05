@@ -1,13 +1,18 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { getStatAndEvData, formatStatName } from '../../utils/functions';
 import TypeBadge from '../TypeBadge/TypeBadge';
 import PokemonStats from './PokemonStats';
 import PokemonForm from './PokemonForm';
 import AlertComponent from '../AlertComponent/AlertComponent';
+import { CompareStatsPageContext } from '../../pages/CompareStatsPage';
 
-export default function PokemonDetails({ response, simplifiedView = false }) {
+export default function PokemonDetails({ response }) {
   const [effortValues, setEffortValues] = useState([]);
   const [stats, setStats] = useState(null);
+
+  const { simplified } = useContext(CompareStatsPageContext) || {
+    simplified: false,
+  };
 
   // set stats
   useEffect(() => {
@@ -17,14 +22,14 @@ export default function PokemonDetails({ response, simplifiedView = false }) {
   }, [response]);
 
   return (
-    <div className={`poke-info ${simplifiedView ? 'simplified' : ''}`}>
+    <div className={`poke-info ${simplified ? 'simplified' : ''}`}>
       <div className="title-section">
         <h2>
           <span>{response.name}</span>
-          {simplifiedView ? null : <span className="id">#{response.id}</span>}
+          {simplified ? null : <span className="id">#{response.id}</span>}
         </h2>
       </div>
-      {simplifiedView ? null : (
+      {simplified ? null : (
         <div className="basic-info">
           <div className="sprite">
             <img src={response.sprites.front_default} alt={response.name} />
@@ -54,8 +59,8 @@ export default function PokemonDetails({ response, simplifiedView = false }) {
         </div>
       )}
 
-      <PokemonStats stats={stats} simplifiedView={simplifiedView} />
-      {simplifiedView ? null : (
+      <PokemonStats stats={stats} />
+      {simplified ? null : (
         <>
           <PokemonForm />
           <AlertComponent />

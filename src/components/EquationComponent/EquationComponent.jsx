@@ -17,6 +17,7 @@ export default function EquationComponent({ leftStats, rightStats }) {
           {el === 'right' ? (
             <TriangleRightIcon className="equation-icon" />
           ) : null}
+          {el === '=' ? el : null}
         </div>
       ))}
     </div>

@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
+import { CompareStatsPageContext } from '../../../pages/CompareStatsPage';
 //search data
 import { pokemonArray } from '../../../data';
 //search plugin
@@ -12,22 +13,26 @@ const fuse = new Fuse(pokemonArray, {
 import SearchInput from '../../SearchInput/SearchInput';
 import SearchResults from '../../SearchResults/SearchResults';
 
-function SearchColumn({ loading, setId, simplifiedView = false }) {
+function SearchColumn({ loading, setId }) {
   const [searchValue, setSearchValue] = useState('');
   const [searchResults, setSearchResults] = useState([]);
+
+  const { simplified } = useContext(CompareStatsPageContext) || {
+    simplified: false,
+  };
 
   //fuse search on input change
   useEffect(() => {
     if (searchValue.length > 0) {
       const results = fuse.search(searchValue, {
-        limit: simplifiedView ? 6 : 12,
+        limit: simplified ? 6 : 12,
       });
       setSearchResults(results);
     }
   }, [searchValue]);
 
   return (
-    <div className={`search-column ${simplifiedView ? 'simplified' : ''}`}>
+    <div className={`search-column ${simplified ? 'simplified' : ''}`}>
       <SearchInput
         loading={loading}
         value={searchValue}
@@ -36,7 +41,6 @@ function SearchColumn({ loading, setId, simplifiedView = false }) {
       <SearchResults
         searchResults={searchResults}
         setId={setId}
-        simplifiedView={simplifiedView}
         handleClearValue={() => {
           setSearchValue('');
           setSearchResults([]);

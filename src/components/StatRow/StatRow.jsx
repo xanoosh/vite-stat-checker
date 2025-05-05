@@ -2,9 +2,10 @@ import StatRowPopover from '../PopoverComponent/PopoverComponent';
 import { ArrowDownIcon, ArrowUpIcon } from '@radix-ui/react-icons';
 import { calculateStatFormula, getNatureModifier } from '../../utils/functions';
 import { useSelector } from 'react-redux';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
+import { CompareStatsPageContext } from '../../pages/CompareStatsPage';
 
-function StatRow({ formattedName, data, simplifiedView }) {
+function StatRow({ formattedName, data }) {
   const pokemonDataState = useSelector((state) => state.pokemonData.value);
   const {
     level,
@@ -17,6 +18,10 @@ function StatRow({ formattedName, data, simplifiedView }) {
   const [statValue, setStatValue] = useState(
     calculateStatFormula(data.name, data.base_stat, level, iv, ev, nature)
   );
+
+  const { simplified } = useContext(CompareStatsPageContext) || {
+    simplified: false,
+  };
 
   useEffect(() => {
     const newStatValue = calculateStatFormula(
@@ -39,17 +44,15 @@ function StatRow({ formattedName, data, simplifiedView }) {
 
   return (
     <div className="stat-row">
-      <div
-        className={`stat-container ${simplifiedView ? 'simplified-view' : ''}`}
-      >
+      <div className={`stat-container ${simplified ? 'simplified-view' : ''}`}>
         <span className="stat-name">{formattedName}</span>
         <div className="stat-badges">
-          {Number(iv) === 31 ? null : (
+          {Number(iv) === 31 || simplified ? null : (
             <div className="stat-badge down">
               IV <ArrowDownIcon />
             </div>
           )}
-          {Number(ev) === 0 ? null : (
+          {Number(ev) === 0 || simplified ? null : (
             <div className="stat-badge up">
               EV <ArrowUpIcon />
             </div>
@@ -57,7 +60,7 @@ function StatRow({ formattedName, data, simplifiedView }) {
         </div>
         <span className={statClassName}>{statValue}</span>
       </div>
-      {simplifiedView ? null : <StatRowPopover name={formattedName} />}
+      {simplified ? null : <StatRowPopover name={formattedName} />}
     </div>
   );
 }

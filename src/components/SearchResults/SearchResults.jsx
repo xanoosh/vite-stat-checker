@@ -1,16 +1,20 @@
 import Button from '../Button/Button';
+import { useContext } from 'react';
+import { CompareStatsPageContext } from '../../pages/CompareStatsPage';
 
 export default function SearchResults({
   searchResults,
   setId,
   empty = 'Type name above to see results.',
-  simplifiedView,
   handleClearValue,
 }) {
+  const { simplified } = useContext(CompareStatsPageContext) || {
+    simplified: false,
+  };
   return (
     <div
       className={`search-results ${
-        simplifiedView && searchResults.length > 0 ? '' : 'inactive'
+        simplified && searchResults.length > 0 ? '' : 'inactive'
       }`}
     >
       {searchResults && searchResults.length > 0 ? (
@@ -22,14 +26,14 @@ export default function SearchResults({
               text={searchResult.item.name}
               onClick={() => {
                 setId(searchResult.item.id);
-                if (simplifiedView) {
+                if (simplified) {
                   handleClearValue();
                 }
               }}
             />
           </div>
         ))
-      ) : simplifiedView ? null : (
+      ) : simplified ? null : (
         <p className="muted">{empty}</p>
       )}
     </div>
