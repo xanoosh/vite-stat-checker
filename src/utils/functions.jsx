@@ -97,3 +97,17 @@ export const getTypeColor = (typeName) => {
       return null;
   }
 };
+
+export const getEquationArray = (leftStats, rightStats) => {
+  if (!leftStats || !rightStats) return [];
+  const equationArray = [];
+  for (let i = 0; i < 6; i++) {
+    if (leftStats.stats[i].base_stat > rightStats.stats[i].base_stat) {
+      equationArray.push('left');
+    } else {
+      equationArray.push('right');
+    }
+  }
+  console.log('equationArray', equationArray);
+  return equationArray;
+};
