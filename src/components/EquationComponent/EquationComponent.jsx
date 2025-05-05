@@ -1,8 +1,9 @@
 import { TriangleLeftIcon, TriangleRightIcon } from '@radix-ui/react-icons';
-import { getEquationArray } from '../../utils/functions';
+import { useContext } from 'react';
+import { CompareStatsPageContext } from '../../pages/CompareStatsPage';
 
 export default function EquationComponent({ leftStats, rightStats }) {
-  const equationArray = getEquationArray(leftStats, rightStats);
+  const { equationArray } = useContext(CompareStatsPageContext);
   return (
     <div
       className={`compare-stats-equation ${
@@ -17,6 +18,7 @@ export default function EquationComponent({ leftStats, rightStats }) {
           {el === 'right' ? (
             <TriangleRightIcon className="equation-icon" />
           ) : null}
+          {el === '=' ? el : null}
         </div>
       ))}
     </div>

@@ -1,10 +1,13 @@
-import { useContext } from 'react';
+import { useContext, createContext } from 'react';
 import { AppContext } from '../App';
 import SearchColumn from '../components/Views/SearchColumn/SearchColumn';
 import PokemonDetails from '../components/PokemonDetails/PokemonDetails';
 import PokemonForm from '../components/PokemonDetails/PokemonForm';
 import AlertComponent from '../components/AlertComponent/AlertComponent';
 import EquationComponent from '../components/EquationComponent/EquationComponent';
+import { getEquationArray } from '../utils/functions';
+
+export const CompareStatsPageContext = createContext();
 
 export default function CompareStatsPage() {
   const {
@@ -15,21 +18,29 @@ export default function CompareStatsPage() {
     compareColumnTwoData,
     isLoadingCompareColumnTwo,
   } = useContext(AppContext);
+
+  const equationArray = getEquationArray(
+    compareColumnOneData,
+    compareColumnTwoData
+  );
   return (
-    <>
+    <CompareStatsPageContext.Provider
+      value={{
+        simplified: true,
+        equationArray,
+      }}
+    >
       <section className="compare-stats-search-container">
         <div>
           <SearchColumn
             loading={isLoadingCompareColumnOne}
             setId={setCompareIdColumnOne}
-            simplifiedView
           />
         </div>
         <div>
           <SearchColumn
             loading={isLoadingCompareColumnTwo}
             setId={setCompareIdColumnTwo}
-            simplifiedView
           />
         </div>
       </section>
@@ -37,7 +48,7 @@ export default function CompareStatsPage() {
       <section className="compare-stats-stat-container">
         <div className="compare-stats-card">
           {compareColumnOneData ? (
-            <PokemonDetails response={compareColumnOneData} simplifiedView />
+            <PokemonDetails response={compareColumnOneData} position="left" />
           ) : null}
         </div>
         <EquationComponent
@@ -46,7 +57,7 @@ export default function CompareStatsPage() {
         />
         <div className="compare-stats-card">
           {compareColumnTwoData ? (
-            <PokemonDetails response={compareColumnTwoData} simplifiedView />
+            <PokemonDetails response={compareColumnTwoData} position="right" />
           ) : null}
         </div>
       </section>
@@ -55,6 +66,6 @@ export default function CompareStatsPage() {
         <PokemonForm />
         <AlertComponent />
       </div>
-    </>
+    </CompareStatsPageContext.Provider>
   );
 }

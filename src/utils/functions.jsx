@@ -104,10 +104,11 @@ export const getEquationArray = (leftStats, rightStats) => {
   for (let i = 0; i < 6; i++) {
     if (leftStats.stats[i].base_stat > rightStats.stats[i].base_stat) {
       equationArray.push('left');
-    } else {
+    } else if (leftStats.stats[i].base_stat < rightStats.stats[i].base_stat) {
       equationArray.push('right');
+    } else {
+      equationArray.push('=');
     }
   }
-  console.log('equationArray', equationArray);
   return equationArray;
 };
