@@ -39,7 +39,11 @@
           background-color: $text-color-danger;
         }
         &.higher {
-          background-color: $text-color-success;
+          background-color: $text-color-golden;
+          border-radius: 50%;
+          width: 1.2rem;
+          height: 1.2rem;
+          padding: 0;
           svg {
             fill: $bg-color;
           }
@@ -60,9 +64,18 @@
     .neutral {
       color: $text-color;
     }
+
     &.simplified-view {
-      grid-template-columns: 8fr 7fr 2fr;
+      grid-template-columns: 6fr 4fr 3fr;
       width: 100%;
+      span:last-of-type {
+        text-align: right;
+      }
+      .stat-badges {
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+      }
       .stat-name {
         font-size: 0.9rem;
       }

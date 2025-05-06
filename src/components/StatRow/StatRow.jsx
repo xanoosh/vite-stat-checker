@@ -75,5 +75,3 @@ function StatRow({ formattedName, data, isHigher = false }) {
 }
 
 export default StatRow;
-
-//add bagdges with icon to indicate higher stat in compare view

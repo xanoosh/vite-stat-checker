@@ -5,7 +5,7 @@ import { CompareStatsPageContext } from '../../pages/CompareStatsPage';
 
 export default function PokemonStats({ stats, position = null }) {
   const { equationArray } = useContext(CompareStatsPageContext) || {
-    simplified: false,
+    equationArray: [],
   };
   return (
     stats?.length && (
