@@ -45,7 +45,13 @@ export default function CompareStatsPage() {
         </div>
       </section>
 
-      <section className="compare-stats-stat-container">
+      <section
+        className={`compare-stats-stat-container ${
+          !compareColumnOneData || !compareColumnTwoData
+            ? 'no-equation-column'
+            : ''
+        }`}
+      >
         <div className="compare-stats-card">
           {compareColumnOneData ? (
             <PokemonDetails response={compareColumnOneData} position="left" />

@@ -25,6 +25,12 @@
       margin-right: 0.3rem;
     }
   }
+  &.no-equation-column {
+    grid-template-columns: 1fr 1fr;
+    .compare-data-column-placeholder {
+      margin: 0.5rem 0.3rem 0 0.3rem;
+    }
+  }
 }
 
 .compare-stats-equation {
@@ -41,12 +47,6 @@
       width: 1.2rem;
       height: 1.2rem;
       font-weight: 800;
-    }
-  }
-  &.inactive {
-    margin-top: 0;
-    .equation-element {
-      display: none;
     }
   }
 }
