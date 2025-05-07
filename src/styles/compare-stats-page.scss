@@ -8,6 +8,23 @@
   display: grid;
   grid-template-columns: 14fr 1fr 14fr;
   gap: 0.2rem;
+  .compare-data-column-placeholder {
+    height: 18rem;
+    border: 1px solid $text-color-muted;
+    border-radius: 0.3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: $text-color-muted;
+    margin-top: 0.5rem;
+    &.left {
+      margin-left: 0.3rem;
+    }
+    &.right {
+      margin-right: 0.3rem;
+    }
+  }
 }
 
 .compare-stats-equation {

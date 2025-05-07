@@ -49,7 +49,11 @@ export default function CompareStatsPage() {
         <div className="compare-stats-card">
           {compareColumnOneData ? (
             <PokemonDetails response={compareColumnOneData} position="left" />
-          ) : null}
+          ) : (
+            <div className="compare-data-column-placeholder left">
+              <p>no data</p>
+            </div>
+          )}
         </div>
         <EquationComponent
           leftStats={compareColumnOneData}
@@ -58,11 +62,16 @@ export default function CompareStatsPage() {
         <div className="compare-stats-card">
           {compareColumnTwoData ? (
             <PokemonDetails response={compareColumnTwoData} position="right" />
-          ) : null}
+          ) : (
+            <div className="compare-data-column-placeholder right">
+              <p>no data</p>
+            </div>
+          )}
         </div>
       </section>
 
       <div className="compare-page-form">
+        <p className="form-header">Change level & nature</p>
         <PokemonForm />
         <AlertComponent />
       </div>

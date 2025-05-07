@@ -98,8 +98,14 @@
 }
 
 .compare-page-form {
+  margin-top: 1.5rem;
+  .form-header {
+    font-size: 1.3rem;
+    text-align: center;
+    font-weight: 600;
+    margin-bottom: 0.7rem;
+  }
   .pokemon-form {
-    margin-top: 1rem;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 0.7rem;
