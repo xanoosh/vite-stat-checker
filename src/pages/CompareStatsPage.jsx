@@ -4,7 +4,6 @@ import SearchColumn from '../components/Views/SearchColumn/SearchColumn';
 import PokemonDetails from '../components/PokemonDetails/PokemonDetails';
 import PokemonForm from '../components/PokemonDetails/PokemonForm';
 import AlertComponent from '../components/AlertComponent/AlertComponent';
-import EquationComponent from '../components/EquationComponent/EquationComponent';
 import { getEquationArray } from '../utils/functions';
 
 export const CompareStatsPageContext = createContext();
@@ -45,32 +44,24 @@ export default function CompareStatsPage() {
         </div>
       </section>
 
-      <section
-        className={`compare-stats-stat-container ${
-          !compareColumnOneData || !compareColumnTwoData
-            ? 'no-equation-column'
-            : ''
-        }`}
-      >
+      <section className="compare-stats-stat-container">
         <div className="compare-stats-card">
           {compareColumnOneData ? (
             <PokemonDetails response={compareColumnOneData} position="left" />
           ) : (
-            <div className="compare-data-column-placeholder left">
-              <p>no data</p>
+            <div className="compare-data-column-placeholder">
+              <p>No data available.</p>
+              <p>Type name above to see results.</p>
             </div>
           )}
         </div>
-        <EquationComponent
-          leftStats={compareColumnOneData}
-          rightStats={compareColumnTwoData}
-        />
         <div className="compare-stats-card">
           {compareColumnTwoData ? (
             <PokemonDetails response={compareColumnTwoData} position="right" />
           ) : (
-            <div className="compare-data-column-placeholder right">
-              <p>no data</p>
+            <div className="compare-data-column-placeholder">
+              <p>No data available.</p>
+              <p>Type name above to see results.</p>
             </div>
           )}
         </div>
