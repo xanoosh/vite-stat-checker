@@ -5,6 +5,7 @@ import PokemonDetails from '../components/PokemonDetails/PokemonDetails';
 import PokemonForm from '../components/PokemonDetails/PokemonForm';
 import AlertComponent from '../components/AlertComponent/AlertComponent';
 import { getEquationArray } from '../utils/functions';
+import CompareInfo from '../components/Views/CompareInfo/CompareInfo';
 
 export const CompareStatsPageContext = createContext();
 
@@ -66,12 +67,12 @@ export default function CompareStatsPage() {
           )}
         </div>
       </section>
-
-      <div className="compare-page-form">
+      <CompareInfo hidden={equationArray.length === 0} />
+      <section className="compare-page-form">
         <p className="form-header">Change level & nature</p>
         <PokemonForm />
         <AlertComponent />
-      </div>
+      </section>
     </CompareStatsPageContext.Provider>
   );
 }

@@ -39,3 +39,30 @@
     }
   }
 }
+
+.compare-info {
+  padding-top: 1rem;
+  p {
+    text-align: center;
+    font-size: 0.8rem;
+    color: $text-color-muted;
+  }
+
+  .badge {
+    margin: 0 0.3rem;
+    opacity: 0.5;
+    color: $bg-color;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+    background-color: $text-color-golden;
+    border-radius: 50%;
+    width: 1rem;
+    height: 1rem;
+    padding: 0 0.2rem;
+    svg {
+      fill: $bg-color;
+    }
+  }
+}
