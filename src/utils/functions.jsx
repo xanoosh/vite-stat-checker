@@ -1,4 +1,4 @@
-import { naturesMap } from '../data';
+import { naturesMap } from '../natures-data';
 
 export const getNatureModifier = (statName, nature) => {
   if (statName === 'hp') return 1;

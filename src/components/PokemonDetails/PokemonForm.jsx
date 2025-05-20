@@ -1,4 +1,4 @@
-import { naturesList } from '../../data';
+import { naturesList } from '../../natures-data';
 import NumberInput from '../NumberInput/NumberInput';
 import SelectComponent from '../SelectComponent/SelectComponent';
 

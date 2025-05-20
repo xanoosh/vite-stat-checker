@@ -1,25 +1,25 @@
 import { useEffect, useState, useContext } from 'react';
 import { CompareStatsPageContext } from '../../../pages/CompareStatsPage';
+import { AppContext } from '../../../App';
 //search data
-import { pokemonArray } from '../../../data';
 //search plugin
 import Fuse from 'fuse.js';
-const fuse = new Fuse(pokemonArray, {
-  keys: ['name'],
-  minMatchCharLength: 2,
-  threshold: 0.4,
-});
 //components
 import SearchInput from '../../SearchInput/SearchInput';
 import SearchResults from '../../SearchResults/SearchResults';
 
 function SearchColumn({ loading, setId }) {
-  const [searchValue, setSearchValue] = useState('');
-  const [searchResults, setSearchResults] = useState([]);
-
+  const { pokemonListData } = useContext(AppContext);
   const { simplified } = useContext(CompareStatsPageContext) || {
     simplified: false,
   };
+  const fuse = new Fuse(pokemonListData, {
+    keys: ['name'],
+    minMatchCharLength: 2,
+    threshold: 0.4,
+  });
+  const [searchValue, setSearchValue] = useState('');
+  const [searchResults, setSearchResults] = useState([]);
 
   //fuse search on input change
   useEffect(() => {
