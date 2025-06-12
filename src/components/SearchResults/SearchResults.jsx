@@ -1,6 +1,7 @@
 import Button from '../Button/Button';
 import { useContext } from 'react';
 import { CompareStatsPageContext } from '../../pages/CompareStatsPage';
+import { formatPokemonName, isGmax, isMega } from '../../utils/functions';
 
 export default function SearchResults({
   searchResults,
@@ -23,7 +24,9 @@ export default function SearchResults({
             <Button
               variant="bordered"
               fullWidth
-              text={searchResult.item.name}
+              text={formatPokemonName(searchResult.item.name)}
+              isMega={isMega(searchResult.item.name)}
+              isGmax={isGmax(searchResult.item.name)}
               onClick={() => {
                 setId(searchResult.item.id);
                 if (simplified) {

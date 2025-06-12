@@ -112,3 +112,16 @@ export const getEquationArray = (leftStats, rightStats) => {
   }
   return equationArray;
 };
+
+export const formatPokemonName = (name) => {
+  const capitalizedName = name.charAt(0).toUpperCase() + name.slice(1);
+  return capitalizedName.replace('-mega', '').replace('-gmax', '');
+};
+
+export const isMega = (name) => {
+  return name.includes('mega');
+};
+
+export const isGmax = (name) => {
+  return name.includes('gmax');
+};

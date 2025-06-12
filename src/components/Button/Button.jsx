@@ -4,6 +4,8 @@ export default function Button({
   variant = 'main',
   disabled = false,
   fullWidth,
+  isMega = false,
+  isGmax = false,
 }) {
   return (
     <button
@@ -12,7 +14,8 @@ export default function Button({
       onClick={onClick}
       className={`button-component ${variant} ${fullWidth ? 'full-width' : ''}`}
     >
-      {text}
+      {text} {isMega ? <span>M</span> : null}
+      {isGmax ? <span>G</span> : null}
     </button>
   );
 }
