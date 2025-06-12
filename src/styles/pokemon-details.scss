@@ -13,8 +13,13 @@
       font-size: 1.7rem;
       span {
         &:first-of-type {
-          &::first-letter {
-            text-transform: uppercase;
+          display: flex;
+          gap: 0.5rem;
+          align-items: center;
+          img {
+            width: 1.4rem;
+            height: 1.4rem;
+            margin-bottom: -0.15rem;
           }
         }
         &.id {

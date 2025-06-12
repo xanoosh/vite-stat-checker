@@ -1,5 +1,13 @@
 import { useState, useEffect, useContext } from 'react';
-import { getStatAndEvData, formatStatName } from '../../utils/functions';
+import {
+  getStatAndEvData,
+  formatStatName,
+  formatPokemonName,
+  isGmax,
+  isMega,
+} from '../../utils/functions';
+import megaimgpath from '../../assets/mega.webp';
+import gmaximgpath from '../../assets/gmax.webp';
 import TypeBadge from '../TypeBadge/TypeBadge';
 import PokemonStats from './PokemonStats';
 import PokemonForm from './PokemonForm';
@@ -25,7 +33,15 @@ export default function PokemonDetails({ response, position = null }) {
     <div className={`poke-info ${simplified ? 'simplified' : ''}`}>
       <div className="title-section">
         <h2>
-          <span>{response.name}</span>
+          <span>
+            {formatPokemonName(response.name)}{' '}
+            {isMega(response.name) ? (
+              <img src={megaimgpath} alt="Mega-logo" className="nav-logo" />
+            ) : null}
+            {isGmax(response.name) ? (
+              <img src={gmaximgpath} alt="Gmax-logo" className="nav-logo" />
+            ) : null}
+          </span>
           {simplified ? null : <span className="id">#{response.id}</span>}
         </h2>
       </div>
