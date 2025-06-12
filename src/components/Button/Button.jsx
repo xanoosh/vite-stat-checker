@@ -1,3 +1,6 @@
+import megaimgpath from '../../assets/mega.webp';
+import gmaximgpath from '../../assets/gmax.webp';
+
 export default function Button({
   text,
   onClick,
@@ -14,8 +17,13 @@ export default function Button({
       onClick={onClick}
       className={`button-component ${variant} ${fullWidth ? 'full-width' : ''}`}
     >
-      {text} {isMega ? <span>M</span> : null}
-      {isGmax ? <span>G</span> : null}
+      {text}{' '}
+      {isMega ? (
+        <img src={megaimgpath} alt="Mega-logo" className="nav-logo" />
+      ) : null}
+      {isGmax ? (
+        <img src={gmaximgpath} alt="Gmax-logo" className="nav-logo" />
+      ) : null}
     </button>
   );
 }

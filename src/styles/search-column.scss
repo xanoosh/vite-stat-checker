@@ -32,6 +32,13 @@
   .search-results-column {
     width: calc(50% - 0.5rem);
   }
+  .button-component {
+    img {
+      width: 1.1rem;
+      // margin-left: 0.1rem;
+      margin-bottom: -0.15rem;
+    }
+  }
 }
 
 //simplified variant 4 compare stats page
