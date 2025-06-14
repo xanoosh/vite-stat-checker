@@ -2,6 +2,7 @@ import {
   configureStore,
   createListenerMiddleware,
   isAnyOf,
+  combineReducers,
 } from '@reduxjs/toolkit';
 import pokemonDataReducer, {
   resetPokemonData,
@@ -34,3 +35,17 @@ export default configureStore({
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().prepend(listenerMiddleware.middleware),
 });
+
+//testing
+
+// Create the root reducer separately so we can extract the RootState type
+const rootReducer = combineReducers({
+  pokemonData: pokemonDataReducer,
+});
+
+export const setupStore = (preloadedState) => {
+  return configureStore({
+    reducer: rootReducer,
+    preloadedState,
+  });
+};

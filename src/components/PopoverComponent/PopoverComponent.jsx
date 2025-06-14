@@ -7,6 +7,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { changePokemonStatModifiers } from '../../redux/pokemonDataSlice';
 
 export default function PopoverComponent({ name }) {
+  if (!name) return null;
+
   const pokemonDataState = useSelector((state) => state.pokemonData.value);
   const dispatch = useDispatch();
   const { iv, ev } = pokemonDataState.statModifiers[name];

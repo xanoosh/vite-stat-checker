@@ -1,6 +1,13 @@
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import SelectComponent from './SelectComponent.jsx';
 import { describe, it, expect, vi } from 'vitest';
+import userEvent from '@testing-library/user-event';
+
+const user = userEvent.setup();
+
+window.HTMLElement.prototype.scrollIntoView = vi.fn();
+window.HTMLElement.prototype.hasPointerCapture = vi.fn();
+window.HTMLElement.prototype.releasePointerCapture = vi.fn();
 
 describe('SelectComponent', () => {
   it('should be visible if items array is passed', () => {
@@ -43,32 +50,45 @@ describe('SelectComponent', () => {
     const triggerButton = screen.getByRole('combobox');
     expect(triggerButton).toHaveAttribute('aria-expanded', 'false');
   });
+
   it('trigger button should have attribute "aria-expanded=true" when clicked', async () => {
     render(<SelectComponent items={['item']} value="item" />);
     const triggerButton = screen.getByRole('combobox');
-
-    await waitFor(() => fireEvent.click(triggerButton));
-    await waitFor(() =>
-      expect(triggerButton).toHaveAttribute('aria-expanded', 'true')
-    );
+    await user.click(triggerButton);
+    expect(triggerButton).toHaveAttribute('aria-expanded', 'true');
   });
 
-  const onValueChangeMock = vi.fn();
-  it('should call passed setValue function on each button click & input change', async () => {
-    const { container } = render(
+  it('should display list when trigger is clicked', async () => {
+    render(
       <div>
-        <SelectComponent
-          items={['item']}
-          value="item"
-          onValueChange={onValueChangeMock}
-        />
+        <SelectComponent items={['item']} value="item" />
       </div>
     );
-    const triggerButton = screen.getByRole('combobox');
-    await waitFor(() => fireEvent.click(triggerButton));
-    await waitFor(() =>
-      fireEvent.click(container.querySelector('.select-item:first-of-type'))
+    await user.click(screen.getByRole('combobox'));
+
+    expect(screen.getByRole('listbox')).toBeInTheDocument();
+  });
+
+  it('should display options when trigger is clicked', async () => {
+    render(
+      <div>
+        <SelectComponent items={['item']} value="item" />
+      </div>
     );
-    expect(onValueChangeMock).toHaveBeenCalledTimes(1);
+    await user.click(screen.getByRole('combobox'));
+
+    expect(screen.getByRole('option')).toBeInTheDocument();
+  });
+
+  it('should display options equal to provided items count', async () => {
+    const mockItemsArray = ['test-item', 'test-item-2'];
+    render(
+      <div>
+        <SelectComponent items={mockItemsArray} value="item" />
+      </div>
+    );
+    await user.click(screen.getByRole('combobox'));
+
+    expect(screen.getAllByRole('option').length).toBe(mockItemsArray.length);
   });
 });

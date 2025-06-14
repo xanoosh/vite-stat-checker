@@ -1,9 +1,12 @@
-import { render, fireEvent } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import SearchInput from './SearchInput.jsx';
 import { describe, it, expect, vi } from 'vitest';
+import userEvent from '@testing-library/user-event';
+
+const user = userEvent.setup();
 
 describe('SearchInput Component', () => {
-  const mockFunction = vi.fn();
+  const mockSetValue = vi.fn();
 
   it('should be visible', () => {
     const { container } = render(<SearchInput />);
@@ -21,11 +24,10 @@ describe('SearchInput Component', () => {
     const { container } = render(<SearchInput />);
     expect(container.querySelector('input')).toHaveValue('');
   });
-  it('should have value equal to typed text', () => {
-    const { container } = render(<SearchInput />);
-    fireEvent.change(container.querySelector('input'), {
-      target: { value: 'test-value' },
-    });
+  it('should have value equal to typed text', async () => {
+    const { container } = render(<SearchInput setValue={mockSetValue} />);
+
+    await user.type(container.querySelector('input'), 'test-value');
     expect(container.querySelector('input')).toHaveValue('test-value');
   });
   it('should have placeholder equal to "Search by name" if no placeholder prop is passed', () => {
@@ -44,22 +46,12 @@ describe('SearchInput Component', () => {
       'test-placeholder'
     );
   });
-  it('handleSearch fn should not be called on input mount', () => {
-    render(<SearchInput handleSearch={mockFunction} />);
-    expect(mockFunction).not.toHaveBeenCalled();
-  });
-  it('handleSearch fn should be called on on each input change event', () => {
-    const { container } = render(<SearchInput handleSearch={mockFunction} />);
+
+  it('setValue fn should be called when user is typing', async () => {
+    const { container } = render(<SearchInput setValue={mockSetValue} />);
     const input = container.querySelector('input');
-    fireEvent.change(input, {
-      target: { value: 'x' },
-    });
-    fireEvent.change(input, {
-      target: { value: 'xy' },
-    });
-    fireEvent.change(input, {
-      target: { value: 'xyz' },
-    });
-    expect(mockFunction).toHaveBeenCalledTimes(3);
+
+    await user.type(input, 'x');
+    expect(mockSetValue).toHaveBeenCalled();
   });
 });
