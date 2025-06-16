@@ -119,7 +119,7 @@ export const formatPokemonName = (name) => {
 };
 
 export const isMega = (name) => {
-  return name.includes('mega');
+  return name.includes('-mega');
 };
 
 export const isGmax = (name) => {
