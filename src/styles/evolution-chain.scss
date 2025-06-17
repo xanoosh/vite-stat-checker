@@ -1,0 +1,20 @@
+.evolution-chain-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding-top: 0.4rem;
+  button.evolution-chain-element {
+    cursor: pointer;
+    border: none;
+    color: $text-color-muted;
+    font-size: 0.9rem;
+    padding: 0;
+    min-width: 0;
+    &.active {
+      color: $primary-color;
+    }
+    &:hover {
+      color: $primary-color;
+    }
+  }
+}

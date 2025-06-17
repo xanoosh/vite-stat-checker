@@ -41,6 +41,7 @@ function App() {
         {pokemonListData?.length > 0 ? (
           <AppContext.Provider
             value={{
+              searchId,
               setSearchId,
               searchData,
               searchLoading,

@@ -49,12 +49,6 @@ export const scrollIntoResult = () => {
   }
 };
 
-export const formatStatName = (statName) => {
-  if (statName === 'special-attack') return 'spAttack';
-  if (statName === 'special-defense') return 'spDefense';
-  return statName;
-};
-
 export const getTypeColor = (typeName) => {
   switch (typeName) {
     case 'normal':
@@ -113,10 +107,20 @@ export const getEquationArray = (leftStats, rightStats) => {
   return equationArray;
 };
 
+// NAME FORMATTING FUNCTIONS
+
+export const formatStatName = (statName) => {
+  if (statName === 'special-attack') return 'spAttack';
+  if (statName === 'special-defense') return 'spDefense';
+  return statName;
+};
+
 export const formatPokemonName = (name) => {
   const capitalizedName = name.charAt(0).toUpperCase() + name.slice(1);
   return capitalizedName.replace('-mega', '').replace('-gmax', '');
 };
+
+// NAME CHECK FUNCTIONS
 
 export const isMega = (name) => {
   return name.includes('-mega');
@@ -124,4 +128,31 @@ export const isMega = (name) => {
 
 export const isGmax = (name) => {
   return name.includes('gmax');
+};
+
+//EVOLUTION CHAIN FUNCTIONS
+
+const getSpeciesDetails = (species) => {
+  if (!species) return null;
+  const urlParts = species.url.split('/');
+  return {
+    name: species.name,
+    id: parseInt(urlParts[urlParts.length - 2]),
+  };
+};
+
+const getSpeciesFromChain = (chain, evolutionArray) => {
+  if (!chain?.species) return null;
+  evolutionArray.push(getSpeciesDetails(chain.species));
+  chain.evolves_to.forEach((evolutionStage) => {
+    //next stages
+    getSpeciesFromChain(evolutionStage, evolutionArray);
+  });
+};
+
+export const getEvolutionArray = (evolutionChainData) => {
+  if (!evolutionChainData) return null;
+  const evolutionArray = [];
+  getSpeciesFromChain(evolutionChainData.chain, evolutionArray);
+  return evolutionArray;
 };

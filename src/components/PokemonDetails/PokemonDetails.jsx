@@ -13,7 +13,7 @@ import PokemonStats from './PokemonStats';
 import PokemonForm from './PokemonForm';
 import AlertComponent from '../AlertComponent/AlertComponent';
 import { CompareStatsPageContext } from '../../pages/CompareStatsPage';
-import EvolutionChainModal from '../EvolutionChainModal/EvolutionChainModal';
+import EvolutionChain from '../EvolutionChain/EvolutionChain';
 import { usePokemonSpecies } from '../../hooks/usePokemonSpecies';
 import { usePokemonEvolutionChain } from '../../hooks/usePokemonEvolutionChain';
 
@@ -33,9 +33,6 @@ export default function PokemonDetails({ response, position = null }) {
     usePokemonEvolutionChain({
       url: pokemonSpeciesEvolutionUrl,
     });
-
-  console.log('species url:', response?.species?.url);
-
   // set stats
   useEffect(() => {
     const { effortValuesData, statsData } = getStatAndEvData(response);
@@ -89,7 +86,7 @@ export default function PokemonDetails({ response, position = null }) {
         </div>
       )}
       {simplified ? null : (
-        <EvolutionChainModal
+        <EvolutionChain
           data={pokemonEvolutionData}
           loading={pokemonEvolutionLoading}
         />

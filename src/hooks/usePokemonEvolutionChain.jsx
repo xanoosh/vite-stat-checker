@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
+import { getEvolutionArray } from '../utils/functions';
 
 const getPokemonEvolutionChainQuery = (url) => ({
   queryKey: ['pokemon-evolution-chain', url],
@@ -19,9 +20,7 @@ async function getPokemonEvolutionChain(url) {
       throw new Error('Failed to fetch pokemon evolution chain data');
     }
     const pokemonEvolutionChainData = await response.json();
-    //get evoultion chain url
-    console.log('pokemonEvolutionChainData', pokemonEvolutionChainData);
-    return pokemonEvolutionChainData;
+    return getEvolutionArray(pokemonEvolutionChainData);
   } catch (error) {
     toast.error(error.message);
     return error;

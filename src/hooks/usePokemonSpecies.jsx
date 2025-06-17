@@ -19,11 +19,6 @@ async function getPokemonSpecies(url) {
     }
     const pokemonSpeciesData = await response.json();
     //get evolution chain url
-    console.log(
-      'evolution chain url',
-      pokemonSpeciesData?.evolution_chain?.url
-    );
-
     return pokemonSpeciesData?.evolution_chain?.url;
   } catch (error) {
     toast.error(error.message);
