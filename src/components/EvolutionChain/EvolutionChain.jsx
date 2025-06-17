@@ -21,17 +21,22 @@ function EvolutionChainList({ evolutionChainArray }) {
 
   return (
     <div className="evolution-chain-container">
-      {evolutionChainArray.map(({ name, id }) => (
-        <button
-          key={id}
-          disabled={id === searchId}
-          className={`evolution-chain-element ${
-            id === searchId ? 'active' : ''
-          }`}
-          onClick={() => setSearchId(id)}
-        >
-          {formatPokemonName(name)}
-        </button>
+      {evolutionChainArray.map(({ name, id }, i) => (
+        <>
+          <button
+            key={id}
+            disabled={id === searchId}
+            className={`evolution-chain-element ${
+              id === searchId ? 'active' : ''
+            }`}
+            onClick={() => setSearchId(id)}
+          >
+            {formatPokemonName(name)}
+          </button>
+          {i === evolutionChainArray.length - 1 ? null : (
+            <div className="separator"> </div>
+          )}
+        </>
       ))}
     </div>
   );

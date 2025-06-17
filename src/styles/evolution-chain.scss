@@ -1,6 +1,7 @@
 .evolution-chain-container {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   gap: 0.5rem;
   padding-top: 0.4rem;
   button.evolution-chain-element {
@@ -16,5 +17,11 @@
     &:hover {
       color: $primary-color;
     }
+  }
+  .separator {
+    background-color: $text-color-muted;
+    width: 0.25rem;
+    height: 0.25rem;
+    border-radius: 100%;
   }
 }
