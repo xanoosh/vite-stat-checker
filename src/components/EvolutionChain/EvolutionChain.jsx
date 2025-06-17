@@ -14,7 +14,10 @@ export default function EvolutionChain({ data, loading }) {
 
 function EvolutionChainList({ evolutionChainArray }) {
   if (evolutionChainArray.length <= 1) return null;
-  const { searchId, setSearchId } = useContext(AppContext);
+  const { searchId, setSearchId } = useContext(AppContext) || {
+    searchId: null,
+    setSearchId: () => {},
+  };
 
   return (
     <div className="evolution-chain-container">
