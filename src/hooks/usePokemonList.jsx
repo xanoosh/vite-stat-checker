@@ -15,6 +15,7 @@ async function getPokemonList(number) {
     );
 
     if (response.status !== 200) {
+      toast.error('Failed to fetch pokemon list');
       throw new Error('Failed to fetch pokemon list');
     }
     const data = await response.json();

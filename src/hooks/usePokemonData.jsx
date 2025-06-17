@@ -14,6 +14,7 @@ async function getPokemonData(id) {
       method: 'GET',
     });
     if (response.status !== 200) {
+      toast.error('Failed to fetch pokemon data');
       throw new Error('Failed to fetch pokemon data');
     }
     const pokemonData = await response.json();

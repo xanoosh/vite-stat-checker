@@ -13,6 +13,9 @@ import PokemonStats from './PokemonStats';
 import PokemonForm from './PokemonForm';
 import AlertComponent from '../AlertComponent/AlertComponent';
 import { CompareStatsPageContext } from '../../pages/CompareStatsPage';
+import EvolutionChainModal from '../EvolutionChainModal/EvolutionChainModal';
+import { usePokemonSpecies } from '../../hooks/usePokemonSpecies';
+import { usePokemonEvolutionChain } from '../../hooks/usePokemonEvolutionChain';
 
 export default function PokemonDetails({ response, position = null }) {
   const [effortValues, setEffortValues] = useState([]);
@@ -21,6 +24,17 @@ export default function PokemonDetails({ response, position = null }) {
   const { simplified } = useContext(CompareStatsPageContext) || {
     simplified: false,
   };
+
+  //fetch evolution chain
+  const { data: pokemonSpeciesEvolutionUrl } = usePokemonSpecies({
+    url: response?.species?.url,
+  });
+  const { data: pokemonEvolutionData, isLoading: pokemonEvolutionLoading } =
+    usePokemonEvolutionChain({
+      url: pokemonSpeciesEvolutionUrl,
+    });
+
+  console.log('species url:', response?.species?.url);
 
   // set stats
   useEffect(() => {
@@ -74,7 +88,12 @@ export default function PokemonDetails({ response, position = null }) {
           </div>
         </div>
       )}
-
+      {simplified ? null : (
+        <EvolutionChainModal
+          data={pokemonEvolutionData}
+          loading={pokemonEvolutionLoading}
+        />
+      )}
       <PokemonStats stats={stats} position={position} />
       {simplified ? null : (
         <>
