@@ -16,6 +16,8 @@ const CompareStatsPage = React.lazy(() =>
   import('./pages/CompareStatsPage.jsx')
 );
 
+const SettingsPage = React.lazy(() => import('./pages/SettingsPage.jsx'));
+
 const router = createBrowserRouter([
   {
     path: '/',
@@ -36,6 +38,15 @@ const router = createBrowserRouter([
         element: (
           <React.Suspense fallback={<Loading />}>
             <CompareStatsPage />
+          </React.Suspense>
+        ),
+        errorElement: <Error />,
+      },
+      {
+        path: 'settings',
+        element: (
+          <React.Suspense fallback={<Loading />}>
+            <SettingsPage />
           </React.Suspense>
         ),
         errorElement: <Error />,
