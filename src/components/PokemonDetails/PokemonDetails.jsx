@@ -17,7 +17,13 @@ import EvolutionChain from '../EvolutionChain/EvolutionChain';
 import { usePokemonSpecies } from '../../hooks/usePokemonSpecies';
 import { usePokemonEvolutionChain } from '../../hooks/usePokemonEvolutionChain';
 
+import { useSelector } from 'react-redux';
+
 export default function PokemonDetails({ response, position = null }) {
+  const {
+    image: { back, shiny },
+  } = useSelector((state) => state.pokemonData.value);
+
   const [effortValues, setEffortValues] = useState([]);
   const [stats, setStats] = useState(null);
 
@@ -40,6 +46,14 @@ export default function PokemonDetails({ response, position = null }) {
     setStats(statsData);
   }, [response]);
 
+  const spritePath = () => {
+    return (
+      response.sprites[
+        `${back ? 'back' : 'front'}${shiny ? '_shiny' : '_default'}`
+      ] || response.sprites.front_default
+    );
+  };
+
   return (
     <div className={`poke-info ${simplified ? 'simplified' : ''}`}>
       <div className="title-section">
@@ -59,7 +73,7 @@ export default function PokemonDetails({ response, position = null }) {
       {simplified ? null : (
         <div className="basic-info">
           <div className="sprite">
-            <img src={response.sprites.front_default} alt={response.name} />
+            <img src={spritePath()} alt={response.name} />
           </div>
           <div className="types">
             {response.types.length
