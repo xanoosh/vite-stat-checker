@@ -1,3 +1,4 @@
+import React from 'react';
 import Loader from '../Loader/Loader';
 import { useContext } from 'react';
 import { AppContext } from '../../App';
@@ -22,7 +23,7 @@ function EvolutionChainList({ evolutionChainArray }) {
   return (
     <div className="evolution-chain-container">
       {evolutionChainArray.map(({ name, id }, i) => (
-        <>
+        <React.Fragment key={id}>
           <button
             key={id}
             disabled={id === searchId}
@@ -36,7 +37,7 @@ function EvolutionChainList({ evolutionChainArray }) {
           {i === evolutionChainArray.length - 1 ? null : (
             <div className="separator"> </div>
           )}
-        </>
+        </React.Fragment>
       ))}
     </div>
   );
