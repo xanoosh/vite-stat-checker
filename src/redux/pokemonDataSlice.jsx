@@ -16,6 +16,10 @@ export const pokemonDataSlice = createSlice({
           },
           nature: 'Neutral',
           level: 5,
+          image: {
+            back: false,
+            shiny: false,
+          },
         },
   },
   reducers: {
@@ -31,6 +35,10 @@ export const pokemonDataSlice = createSlice({
         },
         nature: 'Neutral',
         level: 5,
+        image: {
+          back: false,
+          shiny: false,
+        },
       };
     },
     changePokemonStatModifiers: (state, action) => {
@@ -42,6 +50,12 @@ export const pokemonDataSlice = createSlice({
     changePokemonLevel: (state, action) => {
       state.value.level = action.payload;
     },
+    changePokemonImageBack: (state, action) => {
+      state.value.image.back = action.payload;
+    },
+    changePokemonImageShiny: (state, action) => {
+      state.value.image.shiny = action.payload;
+    },
   },
 });
 
@@ -50,6 +64,8 @@ export const {
   changePokemonStatModifiers,
   changePokemonNature,
   changePokemonLevel,
+  changePokemonImageBack,
+  changePokemonImageShiny,
 } = pokemonDataSlice.actions;
 
 export default pokemonDataSlice.reducer;

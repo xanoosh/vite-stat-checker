@@ -12,8 +12,6 @@ function App() {
   const [searchId, setSearchId] = useState(null);
   const [compareIdColumnOne, setCompareIdColumnOne] = useState(null);
   const [compareIdColumnTwo, setCompareIdColumnTwo] = useState(null);
-  const [imageShiny, setImageShiny] = useState(false);
-  const [imageBack, setImageBack] = useState(false);
   const { data: pokemonListData, isLoading: pokemonListLoading } =
     usePokemonList({
       number: 10000,
@@ -54,10 +52,6 @@ function App() {
               compareColumnTwoData,
               isLoadingCompareColumnTwo,
               pokemonListData,
-              imageShiny,
-              setImageShiny,
-              imageBack,
-              setImageBack,
             }}
           >
             <Outlet />

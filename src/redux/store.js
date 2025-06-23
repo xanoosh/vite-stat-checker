@@ -9,6 +9,8 @@ import pokemonDataReducer, {
   changePokemonStatModifiers,
   changePokemonNature,
   changePokemonLevel,
+  changePokemonImageBack,
+  changePokemonImageShiny,
 } from './pokemonDataSlice';
 
 const listenerMiddleware = createListenerMiddleware();
@@ -18,7 +20,9 @@ listenerMiddleware.startListening({
     resetPokemonData,
     changePokemonStatModifiers,
     changePokemonNature,
-    changePokemonLevel
+    changePokemonLevel,
+    changePokemonImageBack,
+    changePokemonImageShiny
   ),
   effect: async (action, currentState) => {
     localStorage.setItem(
