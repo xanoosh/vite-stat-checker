@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
 import EvolutionChain from './EvolutionChain.jsx';
-import { describe, it, expect, vi } from 'vitest';
+import { describe, it, expect } from 'vitest';
 
 const mockDataArray = [
   { name: 'bulbasaur', id: 1 },

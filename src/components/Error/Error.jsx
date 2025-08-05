@@ -1,11 +1,3 @@
-// export default function Error() {
-//   return (
-//     <div className="error">
-//       <p>An unexpected error has occured</p>
-//     </div>
-//   );
-// }
-
 import * as AlertDialog from '@radix-ui/react-alert-dialog';
 import Button from '../Button/Button';
 import { useDispatch } from 'react-redux';
