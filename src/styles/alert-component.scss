@@ -47,3 +47,27 @@
     gap: 1rem;
   }
 }
+
+//error component dialog changes
+
+.alert-content.error {
+  @media (max-width: 991px) {
+    top: 30%;
+    left: 5%;
+    right: 5%;
+  }
+  @media (min-width: 992px) {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 30rem;
+  }
+  // .alert-heading {
+  //   color: $text-color-danger;
+  // }
+  .alert-buttons {
+    button {
+      width: 100%;
+    }
+  }
+}
