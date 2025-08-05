@@ -1,4 +1,4 @@
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { fireEvent, waitFor } from '@testing-library/react';
 import PopoverComponent from './PopoverComponent.jsx';
 import { describe, it, expect } from 'vitest';
 import { renderWithProviders } from '../../tests/test-utils.jsx';

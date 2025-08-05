@@ -1,11 +1,12 @@
 import AlertComponent from './AlertComponent.jsx';
+import userEvent from '@testing-library/user-event';
 import { screen } from '@testing-library/react';
 
 import { describe, it, expect } from 'vitest';
 import { renderWithProviders } from '../../tests/test-utils.jsx';
 import { MemoryRouter } from 'react-router-dom';
 
-const initialPokemonData = {
+const changedPokemonData = {
   value: {
     statModifiers: {
       hp: { ev: 0, iv: 31 },
@@ -16,7 +17,7 @@ const initialPokemonData = {
       speed: { ev: 0, iv: 31 },
     },
     nature: 'Neutral',
-    level: 5,
+    level: 6,
   },
 };
 
@@ -28,7 +29,7 @@ describe('AlertComponent', () => {
       </MemoryRouter>,
       {
         preloadedState: {
-          pokemonData: initialPokemonData,
+          pokemonData: changedPokemonData,
         },
       }
     );
@@ -42,10 +43,40 @@ describe('AlertComponent', () => {
       </MemoryRouter>,
       {
         preloadedState: {
-          pokemonData: initialPokemonData,
+          pokemonData: changedPokemonData,
         },
       }
     );
     expect(() => screen.getByRole('alertdialog')).toThrowError();
+  });
+
+  it('trigger button should not be disabled', () => {
+    renderWithProviders(
+      <MemoryRouter>
+        <AlertComponent />
+      </MemoryRouter>,
+      {
+        preloadedState: {
+          pokemonData: changedPokemonData,
+        },
+      }
+    );
+
+    expect(screen.getByRole('button', { name: 'Reset' })).not.toBeDisabled();
+  });
+
+  it('element with role "alertdialog" should be displayed when Reset button is clicked', async () => {
+    renderWithProviders(
+      <MemoryRouter>
+        <AlertComponent />
+      </MemoryRouter>,
+      {
+        preloadedState: {
+          pokemonData: changedPokemonData,
+        },
+      }
+    );
+    await userEvent.click(screen.getByRole('button', { name: 'Reset' }));
+    expect(screen.getByRole('alertdialog')).toBeInTheDocument();
   });
 });
